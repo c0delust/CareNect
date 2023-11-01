@@ -1,0 +1,46 @@
+.headerContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  /* background-color: rgba(134, 187, 216, 0.1); */
+  border-bottom: 2px solid var(--primary-color);
+
+  height: 10vh;
+  /* flex: 0; */
+  /* flex-wrap: wrap; */
+}
+
+.tabContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -21px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 5px 10px;
+  height: 5vh;
+  min-width: 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  color: rgb(122, 122, 122);
+}
+
+.activeTab {
+  color: var(--primary-color);
+  font-weight: 600;
+  border-bottom: 5px solid var(--primary-color);
+}
+
+.logo {
+  width: 80px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  padding: 10px;
+  margin-left: 10px;
+}

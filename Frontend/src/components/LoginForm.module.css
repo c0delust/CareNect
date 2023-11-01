@@ -1,0 +1,43 @@
+.dialogContent {
+  /* background-color: var(--primary-color); */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 150px;
+}
+
+.dialogContent > .dialogTitle {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.dialogContent > .googleSignIn {
+  border: 2px solid #1a73e8;
+  height: 20px;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.googleSignIn > img {
+  padding: 8px;
+}
+
+.googleSignIn:hover {
+  color: white;
+  background-color: #1a73e8;
+  cursor: pointer;
+}
+
+.googleSignIn:hover > img {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
