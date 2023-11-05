@@ -2,6 +2,7 @@ import styles from "./UserRegistration.module.css";
 import { Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CloseIcon from "@mui/icons-material/Close";
 
 const UserRegistration = () => {
   const REGISTER_API = "http://localhost:3000/registerDonor";
@@ -61,6 +62,7 @@ const UserRegistration = () => {
       document.cookie =
         "isNew=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       setOpen(false);
+      window.location.reload(true);
     } catch (e) {}
   };
 
@@ -70,27 +72,32 @@ const UserRegistration = () => {
   };
 
   const logout = async () => {
-    const response2 = await axios.get(
-      "http://localhost:3000/auth/login/success",
-      { mode: "cors", withCredentials: true }
-    );
-    console.log(response2);
-    const response1 = await axios.get("http://localhost:3000/auth/logout", {
-      mode: "cors",
-      withCredentials: true,
-    });
-    console.log(response1);
-    const response = await axios.get(
-      "http://localhost:3000/auth/login/success",
-      { mode: "cors", withCredentials: true }
-    );
-    console.log(response);
+    try {
+      const response2 = await axios.get(
+        "http://localhost:3000/auth/login/success",
+        { mode: "cors", withCredentials: true }
+      );
+      console.log(response2);
+      const response1 = await axios.get("http://localhost:3000/auth/logout", {
+        mode: "cors",
+        withCredentials: true,
+      });
+      console.log(response1);
+      const response = await axios.get(
+        "http://localhost:3000/auth/login/success",
+        { mode: "cors", withCredentials: true }
+      );
+      console.log(response);
+    } catch (error) {}
   };
 
-  const handleClose = () => {
-    logout();
-    document.cookie = "isNew=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    setOpen(false);
+  const handleClose = (event, reason) => {
+    if (reason !== "backdropClick") {
+      logout();
+      document.cookie =
+        "isNew=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      setOpen(false);
+    }
   };
 
   const handleOpen = () => {
@@ -128,78 +135,87 @@ const UserRegistration = () => {
       <Dialog
         open={open}
         onClose={handleClose}
-        PaperProps={{
-          style: {
-            borderRadius: "20px",
-          },
-        }}
+        // PaperProps={{
+        //   style: {
+        //     borderRadius: "20px",
+        //     display: "flex",
+        //     background: `var(--gradient)`,
+        //   },
+        // }}
+        maxWidth="sm"
+        fullWidth={true}
       >
-        <button onClick={handleClose}>X</button>
         <div className={styles.registrationContainer}>
-          <h2>Donor Registration Page</h2>
-          <form
-            method="POST"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-          >
-            <label htmlFor="fullName">Full Name:</label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              required
-              onChange={handleChange}
-            />
+          <div className={styles.regFormClose} onClick={handleClose}>
+            <CloseIcon />
+          </div>
+          <h2>Welcome! Complete your Profile</h2>
+          <div>
+            {/* <p></p> */}
+            <form
+              method="POST"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+            >
+              <label htmlFor="fullName">Full Name:</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                required
+                onChange={handleChange}
+              />
 
-            <label htmlFor="userPhoto">User Photo:</label>
-            <input
-              type="file"
-              id="userPhoto"
-              name="userPhoto"
-              accept="image/*"
-              required
-              onChange={handleChange}
-            />
+              <label htmlFor="userPhoto">User Photo:</label>
+              <input
+                type="file"
+                id="userPhoto"
+                name="userPhoto"
+                accept="image/*"
+                required
+                onChange={handleChange}
+              />
 
-            <label htmlFor="phoneNumber">Phone Number:</label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              required
-              onChange={handleChange}
-            />
+              <label htmlFor="phoneNumber">Phone Number:</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                required
+                onChange={handleChange}
+              />
 
-            <label htmlFor="address">Address:</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              required
-              onChange={handleChange}
-            />
+              <label htmlFor="address">Address:</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                required
+                onChange={handleChange}
+              />
 
-            <label htmlFor="aadhaarCardNumber">Aadhaar Card Number:</label>
-            <input
-              type="text"
-              id="aadhaarCardNumber"
-              name="aadhaarCardNumber"
-              required
-              onChange={handleChange}
-            />
+              <label htmlFor="aadhaarCardNumber">Aadhaar Card Number:</label>
+              <input
+                type="text"
+                id="aadhaarCardNumber"
+                name="aadhaarCardNumber"
+                required
+                onChange={handleChange}
+              />
 
-            <label htmlFor="aadhaarCardPhoto">Aadhaar Card Photo:</label>
-            <input
-              type="file"
-              id="aadhaarCardPhoto"
-              name="aadhaarCardPhoto"
-              accept="image/*"
-              required
-              onChange={handleChange}
-            />
+              <label htmlFor="aadhaarCardPhoto">Aadhaar Card Photo:</label>
+              <input
+                type="file"
+                id="aadhaarCardPhoto"
+                name="aadhaarCardPhoto"
+                accept="image/*"
+                required
+                onChange={handleChange}
+              />
 
-            <input type="submit" value="Submit" />
-          </form>{" "}
+              <input type="submit" value="Save" />
+            </form>{" "}
+          </div>
         </div>
       </Dialog>
     </>

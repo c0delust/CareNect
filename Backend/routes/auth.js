@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import logger from "node-color-log";
-import Donor from "../models/donor.js";
+import Donor from "../models/donor_model.js";
 
 const router = Router();
 
@@ -73,10 +73,9 @@ router.get(
 );
 
 router.get("/logout", (req, res) => {
-  logger.error("Logging out");
+  logger.success("Logging out");
   req.logout((err) => {});
-  res.sendStatus(200);
-  // res.redirect("http://localhost:5173");
+  res.redirect("http://localhost:5173");
 });
 
 export default router;

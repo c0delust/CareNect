@@ -1,15 +1,15 @@
 .signInButton {
-  color: #1a73e8;
+  color: var(--color2);
   margin-right: 20px;
-  border: 2px solid #1a73e8;
+  border: 2px solid var(--color2);
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .signInButton:hover {
-  color: white;
-  background-color: #1a73e8;
+  color: var(--color1);
+  background-color: var(--color2);
 }
 
 .profile {
@@ -22,6 +22,11 @@
 .profile > img {
   border-radius: 50%;
   cursor: pointer;
+  border: 2px solid var(--color2);
+}
+
+.profile > img:hover {
+  box-shadow: 0 0 5px var(--color2);
 }
 
 .profileDetails {

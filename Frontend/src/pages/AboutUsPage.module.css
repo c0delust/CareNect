@@ -1,0 +1,14 @@
+.aboutusPage {
+  padding-top: 70px;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  /* background: rgb(255, 255, 255);
+  background: linear-gradient(
+    128deg,
+    rgba(255, 255, 255, 1) 32%,
+    rgba(134, 187, 216, 0.23412692713804273) 32%,
+    rgba(134, 187, 216, 0.29295045654980745) 62%,
+    rgba(255, 255, 255, 1) 62%
+  ); */
+}

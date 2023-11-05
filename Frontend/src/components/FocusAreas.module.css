@@ -1,0 +1,82 @@
+.focusAreaContainer {
+  background: var(--gradient);
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0px;
+}
+
+.focusAreaTileContainer {
+  height: fit-content;
+  padding: 30px 0px;
+}
+
+.focusAreaTitle {
+  position: static;
+  color: var(--color2);
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.focusTileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+
+.focusAreaTile {
+  border-bottom: 5px solid var(--color2);
+  background-color: var(--background);
+  border-radius: 10px;
+  height: 300px;
+  width: 260px;
+  margin: 10px 20px;
+  transition: transform 0.3s ease, border-width 0.3s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.focusAreaTile:hover {
+  transform: scale(1.05);
+  border-width: 10px;
+}
+
+.titleTitle {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color1);
+}
+.tileImg > img {
+  width: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.titleDescription {
+  color: var(--color1);
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+@keyframes typing {
+  from {
+    width: 0; /* Start with no width (text hidden) */
+  }
+  to {
+    width: 100%; /* End with full width (text fully visible) */
+  }
+}

@@ -1,7 +1,7 @@
 import express from "express";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import Donor from "./models/donor.js";
+import Donor from "./models/donor_model.js";
 import connectMongoDB from "./connectDB.js";
 import dotenv from "dotenv";
 import session from "express-session";
@@ -10,6 +10,7 @@ import authRoutes from "./routes/auth.js";
 import passportConfig from "./passportConfig.js";
 import donorRegistrationRoutes from "./routes/donorRegistration.js";
 import bodyParser from "body-parser";
+import dataFetchRoutes from "./routes/dataFetch.js";
 
 dotenv.config();
 
@@ -47,6 +48,7 @@ passportConfig();
 
 app.use("/auth", authRoutes);
 app.use("/registerDonor", donorRegistrationRoutes);
+app.use("/data", dataFetchRoutes);
 
 // app.get("/cors", (req, res) => {
 //   res.set("Access-Control-Allow-Origin", "*");

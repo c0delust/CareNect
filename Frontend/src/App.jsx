@@ -1,14 +1,11 @@
 import { useState } from "react";
-import Header from "./Header.jsx";
-import PhotoCarousel from "./PhotoCarousel.jsx";
-import UserRegistration from "./components/UserRegistration.jsx";
+import NavBar from "./components/NavBar.jsx";
 
 function App() {
   return (
     <>
-      <Header />
-      <UserRegistration />
-      <PhotoCarousel />
+      <NavBar />
+      {/* <Header /> */}
     </>
   );
 }

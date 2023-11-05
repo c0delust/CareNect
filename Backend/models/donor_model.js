@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const donorSchema = new mongoose.Schema({
+  _id: { type: mongoose.Schema.Types.Mixed, required: true },
   googleId: String,
   email: String,
   fullName: String,

@@ -1,0 +1,20 @@
+.photoCarouselContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* padding: 50px 10px; */
+  margin-top: 50px;
+
+  /* width: 80vw; */
+  cursor: grab;
+}
+
+.photoCarouselContainer > * {
+  width: 80vw;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

@@ -1,9 +1,9 @@
 import axios from "axios";
 import styles from "./ProfileView.module.css";
 import { useEffect, useState } from "react";
-import profilePlaceHolder from "../assets/profilePlaceholder.png";
 import { Dialog } from "@mui/material";
 import LoginForm from "./LoginForm.jsx";
+import CheckAuth from "../utils/CheckAuth";
 
 const ProfileView = () => {
   const [user, setUser] = useState(null);
@@ -33,25 +33,36 @@ const ProfileView = () => {
         { mode: "cors", withCredentials: true }
       );
 
-      const userData = response.data.userData;
-      setUser(userData);
+      const responseData = response.data;
+
+      if (responseData.userData != null) {
+        setUser(responseData.userData);
+      }
     } catch (error) {
       // console.log(error);
     }
   };
 
   const logout = async () => {
-    window.open("http://localhost:3000/auth/logout", "_self");
+    window.open(
+      "http://localhost:3000/auth/logout?source=profileView",
+      "_self"
+    );
   };
 
   useEffect(() => {
+    async function checkAuth() {
+      setUser(await CheckAuth());
+    }
     checkAuth();
   }, []);
 
   return (
     <>
       {user ? (
-        <div className={`${styles.profile}`}>User</div>
+        <div className={`${styles.profile}`} onClick={handleDetailOpen}>
+          <img src={user.userPhoto} width="45px"></img>
+        </div>
       ) : (
         <div className={`${styles.signInButton}`} onClick={handleLoginOpen}>
           Sign In
@@ -65,6 +76,36 @@ const ProfileView = () => {
       >
         <LoginForm />
       </Dialog>
+      {user && (
+        <Dialog
+          open={detailOpen}
+          onClose={handleDetailClose}
+          PaperProps={{
+            style: {
+              position: "absolute",
+              top: "5%",
+              right: "0%",
+              // // top: "0%",
+              // left: "88%",
+              borderRadius: "20px",
+              // transform: "translate(-50%, -50%)",
+            },
+          }}
+          BackdropProps={{
+            style: { backgroundColor: "transparent" },
+          }}
+        >
+          <div className={styles.profileDetails}>
+            {user.fullName}
+            <br />
+            {user.email}
+            <br />
+            <button className={styles.logoutButton} onClick={logout}>
+              Log Out
+            </button>
+          </div>
+        </Dialog>
+      )}
     </>
   );
 };

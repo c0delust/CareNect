@@ -1,44 +1,95 @@
-.registrationContainer {
-  width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 30px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.regFormClose {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  padding: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+  background-color: #2e4069;
+  border-radius: 50%;
+  /* clip-path: circle(50% at 50% 50%); */
 }
+
+.regFormClose :hover {
+  color: var(--color2);
+}
+
+.registrationContainer {
+  height: fit-content;
+  /* width: 400px; */
+  background: var(--gradient);
+  border-top: 2px solid var(--color2);
+  padding-bottom: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.registrationContainer h2 {
+  color: var(--color2);
+  width: fit-content;
+  align-self: center;
+  margin: 8px;
+}
+
+/* .registrationContainer form {
+  width: 100%;
+} */
 
 h2 {
   color: #333; /* Change to your desired text color */
 }
 
 label {
+  color: var(--background);
   display: block;
   text-align: left;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  margin: 5px 0px;
 }
-
-input[type="text"],
+.registrationContainer input[type="text"],
 input[type="tel"],
 input[type="file"] {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
+  border: 1px solid var(--color1-light);
+  outline: none;
+  background: transparent;
+  color: var(--color1-light);
+  font-size: 600;
 }
 
-input[type="submit"] {
+.registrationContainer input[type="text"]:focus {
+  border: 2px solid var(--color1-light);
+}
+
+.registrationContainer input[type="tel"]:focus {
+  border: 2px solid var(--color1-light);
+}
+.registrationContainer input[type="file"]:focus {
+  border: 2px solid var(--color1-light);
+}
+
+.registrationContainer input[type="submit"] {
   width: 100%;
-  background-color: #007bff;
-  color: #fff;
+  background-color: transparent;
+  color: var(--color2);
   padding: 10px;
-  border: none;
+  border: 2px solid var(--color2);
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
-input[type="submit"]:hover {
-  background-color: #0056b3;
+.registrationContainer input[type="submit"]:hover {
+  color: var(--color1);
+  background-color: var(--color2);
 }

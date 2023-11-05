@@ -1,0 +1,30 @@
+.ourPartnersPage {
+  padding-top: 80px;
+  display: flex;
+  /* flex-direction: column; */
+  color: var(--color1);
+  flex-wrap: wrap;
+}
+
+.ngoCard {
+  max-width: 700px;
+  padding: 10px;
+  margin: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--color1-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
+}
+
+.ngoCardContentImg {
+  margin: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.ngoCardContentImg img {
+  width: 80px;
+}

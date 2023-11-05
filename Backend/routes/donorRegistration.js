@@ -1,7 +1,7 @@
 import e, { Router } from "express";
 import logger from "node-color-log";
 import mongoose from "mongoose";
-import Donor from "../models/donor.js";
+import Donor from "../models/donor_model.js";
 import multer from "multer";
 import dotenv from "dotenv";
 import axios from "axios";
@@ -15,26 +15,24 @@ const upload = multer({
 });
 
 router.post("/", upload.any(), async (req, res) => {
-  //   console.log(req.body);
-  //   console.log(req.files);
-
-  //   console.log(req);
-
   if (req.isAuthenticated()) {
-    console.log(req.body);
     if (req.user) {
+      const id = "DONOR_" + new mongoose.Types.ObjectId();
       const donor = new Donor({
+        _id: id,
         googleId: req.user.id,
         email:
           req.user.emails && req.user.photos.length > 0
             ? req.user.emails[0].value
             : undefined,
         fullName: req.body.fullName,
+        userPhoto: "",
         phoneNumber: req.body.phoneNumber,
         address: req.body.address,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         aadhaarCardNumber: req.body.aadhaarCardNumber,
+        aadhaarCardPhoto: "",
       });
 
       await donor.save();
