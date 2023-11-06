@@ -9,7 +9,8 @@ body {
   --color1: #14213d;
   --color2: #fca311;
   --background: #e5e5e5;
-  --color1-light: #c1c8d9;
+  --color1-light: #435680;
+  --color1-extralight: #c1c8d9;
   --gradient: linear-gradient(
     161deg,
     rgba(20, 33, 61, 1) 0%,

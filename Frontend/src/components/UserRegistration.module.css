@@ -1,3 +1,17 @@
+.registrationContainer {
+  height: fit-content;
+  /* width: 400px; */
+  background: var(--gradient);
+  border-top: 2px solid var(--color2);
+  padding-bottom: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .regFormClose {
   width: 20px;
   height: 20px;
@@ -15,20 +29,6 @@
 
 .regFormClose :hover {
   color: var(--color2);
-}
-
-.registrationContainer {
-  height: fit-content;
-  /* width: 400px; */
-  background: var(--gradient);
-  border-top: 2px solid var(--color2);
-  padding-bottom: 20px;
-  padding-right: 30px;
-  padding-left: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .registrationContainer h2 {
@@ -60,22 +60,22 @@ input[type="file"] {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  border: 1px solid var(--color1-light);
+  border: 1px solid var(--color1-extralight);
   outline: none;
   background: transparent;
-  color: var(--color1-light);
+  color: var(--color1-extralight);
   font-size: 600;
 }
 
 .registrationContainer input[type="text"]:focus {
-  border: 2px solid var(--color1-light);
+  border: 2px solid var(--color1-extralight);
 }
 
 .registrationContainer input[type="tel"]:focus {
-  border: 2px solid var(--color1-light);
+  border: 2px solid var(--color1-extralight);
 }
 .registrationContainer input[type="file"]:focus {
-  border: 2px solid var(--color1-light);
+  border: 2px solid var(--color1-extralight);
 }
 
 .registrationContainer input[type="submit"] {
@@ -92,4 +92,16 @@ input[type="file"] {
 .registrationContainer input[type="submit"]:hover {
   color: var(--color1);
   background-color: var(--color2);
+}
+
+.loader {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid var(--color2);
+  border-radius: 5px;
+  cursor: wait;
+  margin-top: 10px;
 }

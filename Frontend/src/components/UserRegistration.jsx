@@ -3,6 +3,7 @@ import { Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
+import { ThreeDots } from "react-loader-spinner";
 
 const UserRegistration = () => {
   const REGISTER_API = "http://localhost:3000/registerDonor";
@@ -54,6 +55,7 @@ const UserRegistration = () => {
     data.append("aadhaarCardPhoto", aadhaarCardPhoto);
 
     try {
+      setIsLoading(true);
       const response = await axios.post(REGISTER_API, data, {
         mode: "cors",
         withCredentials: true,
@@ -62,8 +64,12 @@ const UserRegistration = () => {
       document.cookie =
         "isNew=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       setOpen(false);
+
       window.location.reload(true);
-    } catch (e) {}
+    } catch (e) {
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleReset = (e) => {
@@ -132,19 +138,7 @@ const UserRegistration = () => {
 
   return (
     <>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        // PaperProps={{
-        //   style: {
-        //     borderRadius: "20px",
-        //     display: "flex",
-        //     background: `var(--gradient)`,
-        //   },
-        // }}
-        maxWidth="sm"
-        fullWidth={true}
-      >
+      <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth={true}>
         <div className={styles.registrationContainer}>
           <div className={styles.regFormClose} onClick={handleClose}>
             <CloseIcon />
@@ -213,7 +207,18 @@ const UserRegistration = () => {
                 onChange={handleChange}
               />
 
-              <input type="submit" value="Save" />
+              {isLoading ? (
+                <div className={styles.loader}>
+                  <ThreeDots
+                    width="50"
+                    color="#fca311"
+                    ariaLabel="three-dots-loading"
+                    visible={true}
+                  />
+                </div>
+              ) : (
+                <input type="submit" value="Save" />
+              )}
             </form>{" "}
           </div>
         </div>

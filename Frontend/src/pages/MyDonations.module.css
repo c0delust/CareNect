@@ -1,0 +1,9 @@
+.ourPartnersPage {
+  padding-top: 80px;
+  display: flex;
+  color: var(--color1);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}

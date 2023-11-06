@@ -7,7 +7,7 @@ import ProfileView from "./ProfileView";
 import CheckAuth from "../utils/CheckAuth";
 import LoginForm from "./LoginForm";
 import { Dialog } from "@mui/material";
-import OurPartners from "../pages/OurPartners";
+import MyDonations from "../pages/MyDonations";
 import logo from "../assets/logo.png";
 
 const NavBar = () => {
@@ -89,11 +89,11 @@ const NavBar = () => {
             {isLogin === true && (
               <div
                 className={`${styles.tab} ${
-                  activeTab === "Our Partners" ? styles.activeTab : ""
+                  activeTab === "My Donations" ? styles.activeTab : ""
                 }`}
-                onClick={() => handleTabChange("Our Partners")}
+                onClick={() => handleTabChange("My Donations")}
               >
-                Our Partners
+                My Donations
               </div>
             )}
           </div>
@@ -126,10 +126,10 @@ const NavBar = () => {
 
       <div
         className={`${styles.pageContainer} ${
-          activeTab !== "Our Partners" ? styles.slide : ""
+          activeTab !== "My Donations" ? styles.slide : ""
         }`}
       >
-        {activeTab === "Our Partners" && <OurPartners />}
+        {activeTab === "My Donations" && <MyDonations />}
       </div>
       <Dialog
         open={loginOpen}

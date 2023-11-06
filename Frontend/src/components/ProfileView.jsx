@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Dialog } from "@mui/material";
 import LoginForm from "./LoginForm.jsx";
 import CheckAuth from "../utils/CheckAuth";
+import ProfileDetailDialog from "./ProfileDetailDialog.jsx";
 
 const ProfileView = () => {
   const [user, setUser] = useState(null);
@@ -26,30 +27,6 @@ const ProfileView = () => {
     setDetailOpen(false);
   };
 
-  const checkAuth = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/auth/userExists",
-        { mode: "cors", withCredentials: true }
-      );
-
-      const responseData = response.data;
-
-      if (responseData.userData != null) {
-        setUser(responseData.userData);
-      }
-    } catch (error) {
-      // console.log(error);
-    }
-  };
-
-  const logout = async () => {
-    window.open(
-      "http://localhost:3000/auth/logout?source=profileView",
-      "_self"
-    );
-  };
-
   useEffect(() => {
     async function checkAuth() {
       setUser(await CheckAuth());
@@ -61,7 +38,7 @@ const ProfileView = () => {
     <>
       {user ? (
         <div className={`${styles.profile}`} onClick={handleDetailOpen}>
-          <img src={user.userPhoto} width="45px"></img>
+          <img src={user.userPhoto}></img>
         </div>
       ) : (
         <div className={`${styles.signInButton}`} onClick={handleLoginOpen}>
@@ -77,34 +54,11 @@ const ProfileView = () => {
         <LoginForm />
       </Dialog>
       {user && (
-        <Dialog
+        <ProfileDetailDialog
           open={detailOpen}
           onClose={handleDetailClose}
-          PaperProps={{
-            style: {
-              position: "absolute",
-              top: "5%",
-              right: "0%",
-              // // top: "0%",
-              // left: "88%",
-              borderRadius: "20px",
-              // transform: "translate(-50%, -50%)",
-            },
-          }}
-          BackdropProps={{
-            style: { backgroundColor: "transparent" },
-          }}
-        >
-          <div className={styles.profileDetails}>
-            {user.fullName}
-            <br />
-            {user.email}
-            <br />
-            <button className={styles.logoutButton} onClick={logout}>
-              Log Out
-            </button>
-          </div>
-        </Dialog>
+          user={user}
+        />
       )}
     </>
   );

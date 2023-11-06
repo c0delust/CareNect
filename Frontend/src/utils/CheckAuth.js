@@ -15,6 +15,7 @@ const CheckAuth = async () => {
 
     return null;
   } catch (error) {
+    return null;
     // console.log(error);
   }
 };
