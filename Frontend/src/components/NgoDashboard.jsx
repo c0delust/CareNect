@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styles from "./NgoDashboard.module.css" ;
 import NeedyTable from "./NeedyTable";
+import AddNeedyForm from "./AddNeedyForm";
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 
-
-const need = [
+const request = [
     // Your data here
     {
     receiverID: '001',
@@ -123,21 +124,79 @@ const need = [
       },
   
   ];
+
+const approvedData = [];
+
+const fullFilledData= [];
   
  
 const NgoDashboard = () => {
 
-    const [data, setData] = useState(need);
+    const [data, setData] = useState(request);
+    const [approvedData, setApprovedData] = useState([]);
+    const [currentData, setCurrentData] = useState(data);
+
+    const [isAddDialogOpen, setAddDialogOpen] = useState(false);
+
+  const handleAddDialogOpen = () => {
+    setAddDialogOpen(true);
+  };
+
+  const handleAddDialogClose = () => {
+    setAddDialogOpen(false);
+  };
+
+
+    const switchData = (dataType) => {
+      switch (dataType) {
+        case "request":
+          setCurrentData(data);
+          break;
+        case "approved":
+          setCurrentData(approvedData);
+          break;
+        case "fullFilled":
+          setCurrentData(fullFilledData);
+          break;
+        default:
+          setCurrentData(data);
+          break;
+      }
+    };
+
+    const onApprove = (row) =>{
+      if (currentData === approvedData) {
+        return;
+      }
+        // Remove the row from the request array
+      const updatedRequest = data.filter((needy) => needy.receiverID !== row.receiverID);
+
+      // Add the row to the approved array
+      const updatedApproved = [...approvedData, row];
+
+      // Update the state with the new data
+      setData(updatedRequest);
+      setApprovedData(updatedApproved);
+
+      setCurrentData(updatedRequest);
+
+    }
 
     const addNeedyHandler = (newNeedy) => {
         // Logic to add the new needy person to the data array
         setData((prevData) => [...prevData, newNeedy]);
     };
+
+    const handleFormSubmit = (formData) => {
+      // Do something with the form data, e.g., submit to a server
+      const addedApproved = [...approvedData, formData];
+      setApprovedData(addedApproved);
+      console.log('Form Data:', formData);
+    };
    
   return (
     <>
         <div className={styles.container}>
-
 
             <div className={styles.details}>
                 <div className={styles.ngologo}>
@@ -152,30 +211,56 @@ const NgoDashboard = () => {
 
         <div className={styles.buttons}>
 
-            <div className={styles.btn}>
+            <div className={styles.btn}
+              onClick={() => switchData("request")}
+             >
                 <p className={styles.name} > Request</p>
-                <p className={styles.num}>100</p>
+                <p className={styles.num}>{request.length}</p>
             </div>
 
-            <div className={styles.btn}>
+            <div className={styles.btn}
+              onClick={() => switchData("approved")}
+            >
                 <p className={styles.name} > Approved</p>
-                <p className={styles.num}>100</p>
+                <p className={styles.num}>{approvedData.length}</p>
             </div>
 
-            <div className={styles.btn}>
+            <div className={styles.btn}
+              onClick={() => switchData("fullFilled")}
+            >
                 <p className={styles.name} > Full Filled</p>
-                <p className={styles.num}>100</p>
+                <p className={styles.num}>{fullFilledData.length}</p>
+                {currentData === "approved" && (
+                  <p className={styles.disabledText}>Disabled</p>
+                )}
             </div>
 
         </div>
 
         <div className={styles.data}>
-            <NeedyTable data={data} addNeedyHandler={addNeedyHandler} />
+            <NeedyTable data={currentData} 
+            addNeedyHandler={addNeedyHandler} 
+              onApprove={onApprove}
+            />
         </div>
+        
+
+        {/* <AddNeedyForm onSubmit={handleFormSubmit}></AddNeedyForm> */}
+        
 
         <div className={styles.addNeed}>
-            <button onClick={addNeedyHandler} className={styles.addBtn}>Add Needdy</button>
+            <button onClick={handleAddDialogOpen} className={styles.addBtn}>Add Needdy</button>
         </div>
+
+        <Dialog open={isAddDialogOpen} onClose={handleAddDialogClose}>
+        <DialogTitle>Add Needy Person</DialogTitle>
+        <DialogContent>
+          <AddNeedyForm onSubmit={handleFormSubmit} />
+        </DialogContent>
+        <DialogActions>
+          <button onClick={handleAddDialogClose}>Cancel</button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }

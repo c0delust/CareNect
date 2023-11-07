@@ -1,40 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
 // NeedyTable.jsx
 
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import styles from "./NeedyTable.module.css";
-
-const columns = [
-  {
-    name: 'Receiver ID',
-    selector: row => row.receiverID,
-    sortable: true,
-  },
-  {
-    name: 'Full Name',
-    selector: row => row.fullName,
-    sortable: true,
-  },
-  {
-    name: 'Phone Numbers',
-    selector: row => row.phoneNumbers,
-    // Cell: (value) => value.join(', '),
-  },
-  {
-    name: 'Address',
-    selector: row => row.address,
-  },
-  {
-    name: 'Aadhaar Card Number',
-    selector: row => row.aadhaarCardNumber,
-  },
-  {
-    name: 'Registration Date',
-    selector: row => row.registrationDate,
-  },
-];
-
 
 
 const customStyles = {
@@ -65,7 +36,7 @@ const customStyles = {
 
 
 
-const NeedyTable = ({data,addNeedyHandler }) => {
+const NeedyTable = ({data,addNeedyHandler ,onApprove}) => {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState(data);
   
@@ -80,6 +51,40 @@ const NeedyTable = ({data,addNeedyHandler }) => {
   };
 
   // 
+  
+const columns = [
+  {
+    name: 'Receiver ID',
+    selector: row => row.receiverID,
+    sortable: true,
+  },
+  {
+    name: 'Full Name',
+    selector: row => row.fullName,
+    sortable: true,
+  },
+  {
+    name: 'Phone Numbers',
+    selector: row => row.phoneNumbers,
+    // Cell: (value) => value.join(', '),
+  },
+  {
+    name: 'Address',
+    selector: row => row.address,
+  },
+  {
+    name: 'Aadhaar Card Number',
+    selector: row => row.aadhaarCardNumber,
+  },
+  {
+    name: 'Registration Date',
+    selector: row => row.registrationDate,
+  },
+  {
+    cell:(row) => <button onClick={() => onApprove(row)}  id={row.ID}>Approve</button>
+  },
+];
+
 
 
 
@@ -100,8 +105,9 @@ const NeedyTable = ({data,addNeedyHandler }) => {
           columns={columns}
           pagination
           fixedHeader
-          selectableRows
-          selectableRowsHighlight
+          
+          // selectableRows
+          // selectableRowsHighlight
           customStyles={customStyles}
         />
       </div>
