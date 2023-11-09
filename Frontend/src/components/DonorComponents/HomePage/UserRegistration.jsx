@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ThreeDots } from "react-loader-spinner";
 
 const UserRegistration = () => {
-  const REGISTER_API = "http://localhost:3000/registerDonor";
+  const REGISTER_API = "http://localhost:3000/donor/register";
 
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,21 +79,10 @@ const UserRegistration = () => {
 
   const logout = async () => {
     try {
-      const response2 = await axios.get(
-        "http://localhost:3000/auth/login/success",
-        { mode: "cors", withCredentials: true }
-      );
-      console.log(response2);
-      const response1 = await axios.get("http://localhost:3000/auth/logout", {
+      const response = await axios.get("http://localhost:3000/donor/logout", {
         mode: "cors",
         withCredentials: true,
       });
-      console.log(response1);
-      const response = await axios.get(
-        "http://localhost:3000/auth/login/success",
-        { mode: "cors", withCredentials: true }
-      );
-      console.log(response);
     } catch (error) {}
   };
 

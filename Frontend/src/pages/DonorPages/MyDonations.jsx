@@ -1,7 +1,7 @@
 import styles from "./MyDonations.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CheckAuth from "../utils/CheckAuth";
+import CheckAuth from "../../utils/CheckAuth";
 
 const MyDonations = () => {
   const [data, setData] = useState(null);

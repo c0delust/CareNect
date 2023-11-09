@@ -2,7 +2,7 @@ import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const googleAuth = () => {
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:3000/donor/google", "_self");
   };
 
   return (

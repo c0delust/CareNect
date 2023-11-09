@@ -2,21 +2,20 @@ import axios from "axios";
 
 const CheckAuth = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/auth/userExists", {
+    const response = await axios.get("http://localhost:3000/donor/getDonor", {
       mode: "cors",
       withCredentials: true,
     });
 
     const responseData = response.data;
 
-    if (responseData.userData != null) {
-      return responseData.userData;
+    if (!responseData) {
+      return null;
     }
 
-    return null;
+    return responseData;
   } catch (error) {
     return null;
-    // console.log(error);
   }
 };
 

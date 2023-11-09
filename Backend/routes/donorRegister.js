@@ -1,10 +1,8 @@
-import e, { Router } from "express";
-import logger from "node-color-log";
+import { Router } from "express";
 import mongoose from "mongoose";
 import Donor from "../models/donor_model.js";
 import multer from "multer";
 import dotenv from "dotenv";
-import axios from "axios";
 import CloudinaryUpload from "../services/cloudinaryUpload.js";
 
 dotenv.config();

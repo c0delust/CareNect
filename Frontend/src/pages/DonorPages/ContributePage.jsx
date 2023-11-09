@@ -1,31 +1,34 @@
 import styles from "./ContributePage.module.css";
-import SearchBar from "../components/ContributePage/SearchBar";
-import NeedCard from "../components/ContributePage/NeedCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EastIcon from "@mui/icons-material/East";
 import { TailSpin, ThreeDots } from "react-loader-spinner";
+import SearchBar from "../../components/DonorComponents/ContributePage/SearchBar";
+import NeedCard from "../../components/DonorComponents/ContributePage/NeedCard";
 
 const ContributePage = () => {
   const [originalNeeds, setOriginalNeeds] = useState([]);
   const [filteredNeeds, setFilteredNeeds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All Categories");
-  const [loadCount, setLoadCount] = useState(8);
+  const [pageCount, setPageCount] = useState(1);
 
   const fetchNeeds = async () => {
+    setPageCount(1);
     try {
       setIsLoading(true);
       const response = await axios.get(
-        "http://localhost:3000/data/getNeeds?count=" + loadCount,
+        "http://localhost:3000/donor/getNeeds?page=1",
         {
           mode: "cors",
           withCredentials: true,
         }
       );
-      const data = response.data.map((item, index) => {
+      const data = response.data.needsList.map((item, index) => {
         return <NeedCard key={index} needData={item} />;
       });
+
+      console.log(response.data.hasMoreItems);
 
       setOriginalNeeds(data);
       setFilteredNeeds(data);
@@ -37,10 +40,34 @@ const ContributePage = () => {
     }
   };
 
-  useEffect(() => {
-    setActiveCategory("All Categories");
-    fetchNeeds();
-  }, []);
+  const loadMore = async (event) => {
+    setPageCount(pageCount + 1);
+
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/donor/getNeeds?page=" + (pageCount + 1),
+        {
+          mode: "cors",
+          withCredentials: true,
+        }
+      );
+      const data = originalNeeds;
+      const newData = response.data.needsList.map((item, i) => {
+        const index = data.length + i + 1;
+        return <NeedCard key={index} needData={item} />;
+      });
+
+      setOriginalNeeds([...data, ...newData]);
+      setFilteredNeeds([...data, ...newData]);
+
+      if (response.data.hasMoreItems === false) {
+        console.log(response.data.hasMoreItems);
+        event.target.style.display = "none";
+      }
+    } catch (e) {
+    } finally {
+    }
+  };
 
   const onCategorySelect = (e) => {
     const category = e.target.innerText;
@@ -56,6 +83,11 @@ const ContributePage = () => {
       setFilteredNeeds(filteredNeeds);
     }
   };
+
+  useEffect(() => {
+    setActiveCategory("All Categories");
+    fetchNeeds();
+  }, []);
 
   return (
     <>
@@ -185,12 +217,7 @@ const ContributePage = () => {
               <div>
                 <div className={styles.needsCardContainer}>{filteredNeeds}</div>
                 {filteredNeeds.length != 0 ? (
-                  <div
-                    className={styles.loadMoreLink}
-                    onClick={() => {
-                      setLoadCount(loadCount + 8);
-                    }}
-                  >
+                  <div className={styles.loadMoreLink} onClick={loadMore}>
                     Load More
                     <EastIcon className={styles.icon} />
                   </div>

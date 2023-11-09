@@ -4,7 +4,7 @@ import styles from "./ProfileDetailDialog.module.css";
 const ProfileDetailDialog = ({ open, onClose, user }) => {
   const logout = async () => {
     window.open(
-      "http://localhost:3000/auth/logout?source=profileView",
+      "http://localhost:3000/donor/logout?source=profileView",
       "_self"
     );
   };

@@ -1,16 +1,16 @@
 import express from "express";
 import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import Donor from "./models/donor_model.js";
 import connectMongoDB from "./connectDB.js";
 import dotenv from "dotenv";
 import session from "express-session";
 import cors from "cors";
-import authRoutes from "./routes/auth.js";
 import passportConfig from "./passportConfig.js";
-import donorRegistrationRoutes from "./routes/donorRegistration.js";
 import bodyParser from "body-parser";
-import dataRoutes from "./routes/data.js";
+import donorRoutes from "./routes/donorRoutes.js";
+import ngoRoutes from "./routes/ngoRoutes.js";
+import logger from "node-color-log";
+
+logger.setDate(() => new Date().toLocaleTimeString().toUpperCase() + " ->");
 
 dotenv.config();
 
@@ -46,14 +46,8 @@ app.use(passport.session());
 
 passportConfig();
 
-app.use("/auth", authRoutes);
-app.use("/registerDonor", donorRegistrationRoutes);
-app.use("/data", dataRoutes);
-
-// app.get("/cors", (req, res) => {
-//   res.set("Access-Control-Allow-Origin", "*");
-//   res.send({ msg: "This has CORS enabled 🎈" });
-// });
+app.use("/donor", donorRoutes);
+app.use("/ngo", ngoRoutes);
 
 app.listen(port, () => {
   console.log(`Server app listening at ${port}`);

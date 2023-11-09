@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./NavigationManager.module.css";
-import Home from "../../pages/HomePage";
-import AboutUs from "../../pages/AboutUsPage";
-import Contribute from "../../pages/ContributePage";
 import ProfileView from "./ProfileView";
-import CheckAuth from "../../utils/CheckAuth";
+import CheckAuth from "../../../utils/CheckAuth";
 import LoginForm from "./LoginForm";
 import { Dialog } from "@mui/material";
-import MyDonations from "../../pages/MyDonations";
-import logo from "../../assets/logo.png";
+import MyDonations from "../../../pages/DonorPages/MyDonations";
+import Home from "../../../pages/DonorPages/HomePage";
+import AboutUs from "../../../pages/DonorPages/AboutUsPage";
+import Contribute from "../../../pages/DonorPages/ContributePage";
+import logo from "../../../assets/logo.png";
 
 const NavigationManager = () => {
   const [activeTab, setActiveTab] = useState("Home");

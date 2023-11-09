@@ -16,9 +16,11 @@
     "@mui/material": "^5.14.15",
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
+    "node-color-log": "^10.0.2",
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-loader-spinner": "^5.4.5",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.17.0"
