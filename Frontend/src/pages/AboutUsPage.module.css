@@ -1,8 +1,8 @@
 .aboutusPage {
   padding-top: 70px;
-  width: 100vw;
+  /* width: 100vw;
   height: 100vh;
-  margin: 0px;
+  margin: 0px; */
   /* background: rgb(255, 255, 255);
   background: linear-gradient(
     128deg,
@@ -11,4 +11,106 @@
     rgba(134, 187, 216, 0.29295045654980745) 62%,
     rgba(255, 255, 255, 1) 62%
   ); */
+}
+
+.cards_container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 80px;
+}
+
+.card {
+  width: 300px;
+  background-color: var(--color1); /* Set background color to color1 */
+  border: 2px solid var(--color2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box_shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  font-size: 24px;
+  color: var(--color2);
+  margin: 0;
+}
+
+.card p {
+  color: var(--color1-light);
+  font-size: 16px;
+}
+.aim_section {
+  display: flex; /* Create a flex container to make two columns */
+  align-items: center; /* Center items vertically */
+  background-color: linear_gradient(to bottom, #e5e5e5, #14213d);
+}
+.aim_text {
+  flex: 7; /* Occupy 30% of the container's width */
+  padding: 20px; /* Add some spacing */
+  box-sizing: border_box; /* Include padding in the width */
+}
+.aim_text h2 {
+  font-size: 24px;
+  margin: 0;
+}
+.aim_text ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+.aim_text li {
+  font-weight: bold;
+}
+.aim_text p {
+  font-size: 18px;
+  margin: 0 0 20px;
+}
+.aim_image {
+  flex: 3;
+  text-align: right;
+}
+.aim_image img {
+  max-width: 100%;
+}
+.fade_in {
+  max-width: 100%;
+  animation: fadeIn 1s ease_in_out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.scroll_section {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: var(--color1);
+  color: var(--color2);
+  font-size: 18px;
+  align-self: baseline;
+  text-align: center;
+}
+
+.scroll_content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.aim_image img {
+  width: 100%; /* Adjust the image width as needed */
+}
+.animated_image {
+  width: 30%; /* Adjust the image width as needed */
+  animation: fadeIn 2s ease_in; /* Apply a 2_second fade_in animation */
 }

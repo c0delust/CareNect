@@ -1,8 +1,8 @@
 import styles from "./HomePage.module.css";
-import UserRegistration from "../components/UserRegistration.jsx";
-import PhotoCarousel from "../components/PhotoCarousel.jsx";
-import ImageHeader from "../components/ImageHeader.jsx";
-import FocusAreas from "../components/FocusAreas.jsx";
+import UserRegistration from "../components/HomePage/UserRegistration.jsx";
+import PhotoCarousel from "../components/HomePage/PhotoCarousel.jsx";
+import ImageHeader from "../components/HomePage/ImageHeader.jsx";
+import FocusAreas from "../components/HomePage/FocusAreas.jsx";
 import Footer from "../components/Footer.jsx";
 
 const HomePage = () => {

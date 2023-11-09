@@ -1,10 +1,10 @@
 import { useState } from "react";
-import NavBar from "./components/NavBar.jsx";
+import NavigationManager from "./components/Navigation/NavigationManager.jsx";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <NavigationManager />
       {/* <Header /> */}
     </>
   );

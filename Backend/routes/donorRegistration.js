@@ -29,12 +29,12 @@ router.post("/", upload.any(), async (req, res) => {
     const userPhotoUrl = await CloudinaryUpload(
       id,
       req.files[0],
-      "DonorsProfilePictures/UserPhotos/"
+      "DonorsData/UserPhotos/"
     );
     const aadhaarCardPhotoUrl = await CloudinaryUpload(
       id,
       req.files[1],
-      "DonorsProfilePictures/AadhaarCardPhotos/"
+      "DonorsData/AadhaarCardPhotos/"
     );
 
     if (userPhotoUrl == null || aadhaarCardPhotoUrl == null) {

@@ -1,4 +1,98 @@
-.contributePage {
+.contributePageContainer {
   padding-top: 70px;
-  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  place-content: center;
+}
+
+.title {
+  color: var(--color1);
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin: 40px 0px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.categoriesContainer {
+  background-color: var(--color1);
+  padding: 5px 15px;
+  width: 200px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+}
+
+.searchAndNeedContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  width: fit-content;
+}
+
+.needsCardContainer {
+  max-width: 70vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+}
+
+.cateogoryLabel {
+  color: var(--color2);
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 10px 0px;
+  border-bottom: 1px solid var(--color2);
+  margin-bottom: 10px;
+}
+
+.categoryItem {
+  color: var(--color1-extralight);
+  padding: 5px;
+  cursor: pointer;
+}
+
+.categoryItem:hover {
+  color: var(--color2);
+  font-weight: 600;
+}
+
+.categoryItem.activeCategory {
+  color: var(--color2);
+  font-weight: 600;
+}
+
+.loadMoreLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  font-size: medium;
+  color: var(--color1-light);
+  cursor: pointer;
+}
+
+.loadMoreLink > .icon {
+  padding-left: 10px;
+  font-size: medium;
+}
+
+.loadMoreLink:hover {
+  color: var(--color1);
+}
+
+.spinner {
+  width: 65vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

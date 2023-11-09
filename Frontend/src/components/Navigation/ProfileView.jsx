@@ -3,7 +3,7 @@ import styles from "./ProfileView.module.css";
 import { useEffect, useState } from "react";
 import { Dialog } from "@mui/material";
 import LoginForm from "./LoginForm.jsx";
-import CheckAuth from "../utils/CheckAuth";
+import CheckAuth from "../../utils/CheckAuth.js";
 import ProfileDetailDialog from "./ProfileDetailDialog.jsx";
 
 const ProfileView = () => {

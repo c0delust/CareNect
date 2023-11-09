@@ -10,7 +10,7 @@ import authRoutes from "./routes/auth.js";
 import passportConfig from "./passportConfig.js";
 import donorRegistrationRoutes from "./routes/donorRegistration.js";
 import bodyParser from "body-parser";
-import dataFetchRoutes from "./routes/dataFetch.js";
+import dataRoutes from "./routes/data.js";
 
 dotenv.config();
 
@@ -48,7 +48,7 @@ passportConfig();
 
 app.use("/auth", authRoutes);
 app.use("/registerDonor", donorRegistrationRoutes);
-app.use("/data", dataFetchRoutes);
+app.use("/data", dataRoutes);
 
 // app.get("/cors", (req, res) => {
 //   res.set("Access-Control-Allow-Origin", "*");
