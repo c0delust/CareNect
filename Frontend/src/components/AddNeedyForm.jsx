@@ -1,6 +1,7 @@
 // import React from 'react'
 import  { useState } from 'react';
 import { TextField, Button, Grid } from '@mui/material';
+import styles from "./AddNeedyForm.module.css";
 
 const AddNeedyForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ const AddNeedyForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item sm={12}>
           <TextField
             label="Full Name"
             variant="outlined"
@@ -48,6 +49,7 @@ const AddNeedyForm = ({ onSubmit }) => {
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
+            
           />
         </Grid>
         <Grid item xs={12}>
@@ -162,7 +164,7 @@ const AddNeedyForm = ({ onSubmit }) => {
         </Grid>
 
         <Grid item xs={12}>
-          <Button variant="contained" color="primary" type="submit">
+          <Button className={styles.addBtn}   variant="contained" color="primary" type="submit">
             Add
           </Button>
         </Grid>

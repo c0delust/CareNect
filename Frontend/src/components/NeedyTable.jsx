@@ -36,7 +36,7 @@ const customStyles = {
 
 
 
-const NeedyTable = ({data,addNeedyHandler ,onApprove}) => {
+const NeedyTable = ({data,addNeedyHandler ,onApprove,onPostNeed}) => {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState(data);
   
@@ -81,7 +81,22 @@ const columns = [
     selector: row => row.registrationDate,
   },
   {
-    cell:(row) => <button onClick={() => onApprove(row)}  id={row.ID}>Approve</button>
+    cell:(row) => <button 
+    onClick={() => onApprove(row)}  
+    id={row.ID}
+    className={styles.approveButton}
+    >
+      Approve
+    </button>
+  },
+  {
+    cell:(row) => <button 
+    onClick={() => onPostNeed(row)}  
+    id={row.ID}
+    className={styles.approveButton}
+    >
+      Post Need
+    </button>
   },
 ];
 

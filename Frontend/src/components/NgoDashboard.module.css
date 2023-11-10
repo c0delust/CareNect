@@ -35,7 +35,7 @@
 
 .btn{
     width: 200px;
-    height: 100px;
+    height: 135px;
     border-radius: 30px;
     background: #14213d ;
     opacity: ;
@@ -100,4 +100,27 @@
     color: #fff;
     font-weight: 600;
     font-size: 1.25rem;
+}
+
+
+.formtitle{
+    text-align: center;
+    color: var(--color1);
+}
+
+
+.formBtn {
+    background-color:#3c3c7a; /* Set your desired background color */
+    color: white; /* Set your desired text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+.needyPerson{
+    color: var(--color2);
+    text-align: center;
+    font-weight: 200px;
 }

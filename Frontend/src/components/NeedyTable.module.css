@@ -3,24 +3,26 @@
     margin-top: 20px;
     display: flex;
     width:90%;
-      max-width:550px;
-      /* margin:0 auto; */
-      justify-content: center;
-      align-items: center;
-      /* gap: 0 10px;  */
-      margin-bottom: 10px;
+    max-width:750px;
+    /* margin:0 auto; */
+    justify-content: center;
+    align-items: center;
+    /* gap: 0 10px;  */
+    margin-bottom: 10px;
   }
   
   .searchInput {
     all:unset;
     width: calc(100% - 80px);
-    height:20px;
+    height:40px;
     padding: px;
-    background-color:rgba(219, 226, 239, 0.5);
+    background-color:rgb(216, 224, 239);
     border-radius: 10px;
+    border: solid 1px #000;
   }
   
   .searchBar input::placeholder{
+    padding: 10px;
     color: rgba(100, 50, 50, 0.5);
   }
   
@@ -31,3 +33,18 @@
   .needyTable{
     width: 100%;
   }
+
+  .approveButton {
+    background-color:#3c3c7a; /* Set your desired background color */
+    color: white; /* Set your desired text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .approveButton:hover {
+    background-color: #14143d; /* Change color on hover if desired */
+  }
+  

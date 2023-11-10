@@ -1,0 +1,9 @@
+.addBtn{
+    background-color:#3c3c7a; /* Set your desired background color */
+    color: white; /* Set your desired text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}

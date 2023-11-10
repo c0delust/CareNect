@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./NgoDashboard.module.css" ;
 import NeedyTable from "./NeedyTable";
 import AddNeedyForm from "./AddNeedyForm";
+import PostNeedForm from "./PostNeedForm";
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 
@@ -136,15 +137,25 @@ const NgoDashboard = () => {
     const [approvedData, setApprovedData] = useState([]);
     const [currentData, setCurrentData] = useState(data);
 
+    //for add needy btn
     const [isAddDialogOpen, setAddDialogOpen] = useState(false);
 
   const handleAddDialogOpen = () => {
     setAddDialogOpen(true);
   };
-
   const handleAddDialogClose = () => {
     setAddDialogOpen(false);
   };
+
+   //for post need btn
+   const [isPostNeedopen, setPostNeedopen] = useState(false);
+
+   const handlePostNeedOpen = () => {
+    setPostNeedopen(true);
+   };
+   const handlePostNeedClose = () => {
+    setPostNeedopen(false);
+   }
 
 
     const switchData = (dataType) => {
@@ -179,7 +190,12 @@ const NgoDashboard = () => {
       setApprovedData(updatedApproved);
 
       setCurrentData(updatedRequest);
+      handleAddDialogClose(false);
 
+    }
+
+    const onPostNeed = (row) =>{
+      handlePostNeedOpen();
     }
 
     const addNeedyHandler = (newNeedy) => {
@@ -206,7 +222,11 @@ const NgoDashboard = () => {
                     <h2>NGO NonGovermental Organization</h2>
                     <p>Sangli Miraj Kupwad</p>
                 </div>
+
+                
             </div>
+
+            
         </div>
 
         <div className={styles.buttons}>
@@ -214,21 +234,21 @@ const NgoDashboard = () => {
             <div className={styles.btn}
               onClick={() => switchData("request")}
              >
-                <p className={styles.name} > Request</p>
+                <p className={styles.name} >Total Request</p>
                 <p className={styles.num}>{request.length}</p>
             </div>
 
             <div className={styles.btn}
               onClick={() => switchData("approved")}
             >
-                <p className={styles.name} > Approved</p>
+                <p className={styles.name} > Approved Request</p>
                 <p className={styles.num}>{approvedData.length}</p>
             </div>
 
             <div className={styles.btn}
               onClick={() => switchData("fullFilled")}
             >
-                <p className={styles.name} > Full Filled</p>
+                <p className={styles.name} > Full Filled Request</p>
                 <p className={styles.num}>{fullFilledData.length}</p>
                 {currentData === "approved" && (
                   <p className={styles.disabledText}>Disabled</p>
@@ -241,6 +261,7 @@ const NgoDashboard = () => {
             <NeedyTable data={currentData} 
             addNeedyHandler={addNeedyHandler} 
               onApprove={onApprove}
+              onPostNeed={onPostNeed}
             />
         </div>
         
@@ -253,14 +274,31 @@ const NgoDashboard = () => {
         </div>
 
         <Dialog open={isAddDialogOpen} onClose={handleAddDialogClose}>
-        <DialogTitle>Add Needy Person</DialogTitle>
-        <DialogContent>
-          <AddNeedyForm onSubmit={handleFormSubmit} />
-        </DialogContent>
-        <DialogActions>
-          <button onClick={handleAddDialogClose}>Cancel</button>
-        </DialogActions>
-      </Dialog>
+          <DialogTitle className={styles.needyPerson} >Add Needy Person</DialogTitle>
+          <DialogContent>
+            <AddNeedyForm onSubmit={handleFormSubmit} />
+          </DialogContent>
+          <DialogActions>
+            <button className={styles.formBtn}  onClick={handleAddDialogClose}>Cancel</button>
+          </DialogActions>
+        </Dialog>
+
+
+        {/* <div className={styles.addNeed}> 
+          <button onClick={handlePostNeedOpen} className={styles.addBtn}>Post Need</button>
+        </div> */}
+
+        <Dialog open={isPostNeedopen} onClose={handlePostNeedClose}>
+          <DialogTitle className={styles.needyPerson} >Post Need</DialogTitle>
+          <DialogContent>
+            <PostNeedForm onSubmit={handleFormSubmit} />
+          </DialogContent>
+          <DialogActions>
+            <button className={styles.formBtn}  onClick={handlePostNeedClose}>Cancel</button>
+          </DialogActions>
+        </Dialog>
+
+        
     </>
   )
 }
