@@ -1,8 +1,9 @@
 import axios from "axios";
+import { BACKEND_URL } from "./constants";
 
-const CheckAuth = async () => {
+const CheckDonorAuth = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/donor/getDonor", {
+    const response = await axios.get(`${BACKEND_URL}/donor/getDonor`, {
       mode: "cors",
       withCredentials: true,
     });
@@ -19,4 +20,4 @@ const CheckAuth = async () => {
   }
 };
 
-export default CheckAuth;
+export default CheckDonorAuth;

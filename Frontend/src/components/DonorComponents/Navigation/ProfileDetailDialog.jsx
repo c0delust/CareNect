@@ -1,12 +1,11 @@
 import { Dialog } from "@mui/material";
 import styles from "./ProfileDetailDialog.module.css";
+import { BACKEND_URL } from "../../../utils/constants";
+import Cookie from "js-cookie";
 
 const ProfileDetailDialog = ({ open, onClose, user }) => {
   const logout = async () => {
-    window.open(
-      "http://localhost:3000/donor/logout?source=profileView",
-      "_self"
-    );
+    window.open(`${BACKEND_URL}/donor/logout?source=profileView`, "_self");
   };
 
   return (

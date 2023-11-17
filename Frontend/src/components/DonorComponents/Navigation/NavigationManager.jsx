@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./NavigationManager.module.css";
 import ProfileView from "./ProfileView";
-import CheckAuth from "../../../utils/CheckAuth";
+import CheckDonorAuth from "../../../utils/CheckDonorAuth";
 import LoginForm from "./LoginForm";
 import { Dialog } from "@mui/material";
 import MyDonations from "../../../pages/DonorPages/MyDonations";
@@ -42,7 +42,7 @@ const NavigationManager = () => {
     };
 
     const checkAuth = async () => {
-      if ((await CheckAuth()) != null) setIsLogin(true);
+      if ((await CheckDonorAuth()) != null) setIsLogin(true);
       else setIsLogin(false);
     };
     checkAuth();

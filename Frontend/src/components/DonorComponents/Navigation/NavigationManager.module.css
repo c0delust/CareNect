@@ -5,6 +5,8 @@
   width: 100%;
   z-index: 8;
   box-shadow: 0 6px 6px 0px rgba(0, 0, 0, 0.3);
+  display: flex;
+  width: 100%;
 }
 
 .navbar.hidden {
@@ -14,7 +16,7 @@
 }
 
 .headerContainer {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-shrink: 0;
   justify-content: space-between;
@@ -76,7 +78,7 @@
 .pageContainer {
   position: relative;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   height: auto;
   transition: transform 0.5s ease, opacity 0.5s ease;
 }

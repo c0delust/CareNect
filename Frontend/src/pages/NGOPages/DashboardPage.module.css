@@ -1,0 +1,49 @@
+.dashboardContainerWithBackground {
+  margin: 0px;
+  padding: 0px;
+
+  height: 100%;
+
+  background-color: #14213d;
+
+  background-image: url("data:image/svg+xml,%3Csvg id='visual' viewBox='0 0 900 450' width='900' height='450' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1'%3E%3Cpath d='M0 60L75 59.2C150 58.3 300 56.7 450 61.8C600 67 750 79 825 85L900 91L900 0L825 0C750 0 600 0 450 0C300 0 150 0 75 0L0 0Z' fill='%23111a2e'%3E%3C/path%3E%3Cpath d='M0 105L75 107.2C150 109.3 300 113.7 450 118.2C600 122.7 750 127.3 825 129.7L900 132L900 89L825 83C750 77 600 65 450 59.8C300 54.7 150 56.3 75 57.2L0 58Z' fill='%23121c32'%3E%3C/path%3E%3Cpath d='M0 141L75 145.5C150 150 300 159 450 165C600 171 750 174 825 175.5L900 177L900 130L825 127.7C750 125.3 600 120.7 450 116.2C300 111.7 150 107.3 75 105.2L0 103Z' fill='%23131e37'%3E%3C/path%3E%3Cpath d='M0 163L75 168.3C150 173.7 300 184.3 450 188.8C600 193.3 750 191.7 825 190.8L900 190L900 175L825 173.5C750 172 600 169 450 163C300 157 150 148 75 143.5L0 139Z' fill='%2314203b'%3E%3C/path%3E%3Cpath d='M0 208L75 213.3C150 218.7 300 229.3 450 235.3C600 241.3 750 242.7 825 243.3L900 244L900 188L825 188.8C750 189.7 600 191.3 450 186.8C300 182.3 150 171.7 75 166.3L0 161Z' fill='%23182543'%3E%3C/path%3E%3Cpath d='M0 298L75 303.3C150 308.7 300 319.3 450 318.7C600 318 750 306 825 300L900 294L900 242L825 241.3C750 240.7 600 239.3 450 233.3C300 227.3 150 216.7 75 211.3L0 206Z' fill='%231f2e50'%3E%3C/path%3E%3Cpath d='M0 334L75 340C150 346 300 358 450 355.8C600 353.7 750 337.3 825 329.2L900 321L900 292L825 298C750 304 600 316 450 316.7C300 317.3 150 306.7 75 301.3L0 296Z' fill='%2327385d'%3E%3C/path%3E%3Cpath d='M0 451L75 451C150 451 300 451 450 451C600 451 750 451 825 451L900 451L900 319L825 327.2C750 335.3 600 351.7 450 353.8C300 356 150 344 75 338L0 332Z' fill='%232f416a'%3E%3C/path%3E%3C/svg%3E");
+
+  background-repeat: repeat;
+  background-position: center center;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.dashboardContainer {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+}
+
+.statusCardRow {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

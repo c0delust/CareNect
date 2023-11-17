@@ -1,0 +1,104 @@
+.NGOInfoCardContainer {
+  background: var(--gradient);
+  min-width: 45%;
+  max-width: 45%;
+  text-overflow: ellipsis;
+  height: 300px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  overflow: scroll;
+  box-sizing: content-box;
+}
+
+.logoContainer {
+  padding: 0px;
+  margin: 0px;
+  max-width: 600px;
+  width: 30%;
+}
+
+.logoImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.content {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  padding: 30px 0;
+}
+
+.name {
+  color: var(--color2);
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.parentOrganization {
+  margin-bottom: 5px;
+  color: var(--background);
+  font-weight: 400;
+}
+
+.description {
+  color: var(--color1-extralight);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-align: justify;
+}
+
+.type {
+  font-weight: 600;
+  color: var(--color1-extralight);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  opacity: 0.8;
+}
+
+/* .address > span > * {
+  margin: 0px;
+  padding: 0px;
+  font-size: normal;
+  vertical-align: middle;
+} */
+
+.address {
+  color: var(--color2);
+  margin-top: 15px;
+  vertical-align: middle;
+}
+
+.iconContainer {
+  margin: 0px;
+  padding: 0px;
+  margin-right: 5px;
+  font-size: normal;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+.website {
+  color: var(--color2);
+  margin-top: 5px;
+  vertical-align: middle;
+}
+
+.website > a {
+  text-decoration: none;
+  color: var(--color2);
+  font-weight: 400;
+}

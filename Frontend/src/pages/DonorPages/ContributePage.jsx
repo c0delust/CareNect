@@ -5,6 +5,7 @@ import EastIcon from "@mui/icons-material/East";
 import { TailSpin, ThreeDots } from "react-loader-spinner";
 import SearchBar from "../../components/DonorComponents/ContributePage/SearchBar";
 import NeedCard from "../../components/DonorComponents/ContributePage/NeedCard";
+import { BACKEND_URL } from "../../utils/constants";
 
 const ContributePage = () => {
   const [originalNeeds, setOriginalNeeds] = useState([]);
@@ -17,26 +18,19 @@ const ContributePage = () => {
     setPageCount(1);
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        "http://localhost:3000/donor/getNeeds?page=1",
-        {
-          mode: "cors",
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get(`${BACKEND_URL}/donor/getNeeds?page=1`, {
+        mode: "cors",
+        withCredentials: true,
+      });
       const data = response.data.needsList.map((item, index) => {
         return <NeedCard key={index} needData={item} />;
       });
-
-      console.log(response.data.hasMoreItems);
 
       setOriginalNeeds(data);
       setFilteredNeeds(data);
     } catch (e) {
     } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
+      setIsLoading(false);
     }
   };
 
@@ -45,7 +39,7 @@ const ContributePage = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/donor/getNeeds?page=" + (pageCount + 1),
+        `${BACKEND_URL}/donor/getNeeds?page=` + (pageCount + 1),
         {
           mode: "cors",
           withCredentials: true,
@@ -57,11 +51,12 @@ const ContributePage = () => {
         return <NeedCard key={index} needData={item} />;
       });
 
-      setOriginalNeeds([...data, ...newData]);
-      setFilteredNeeds([...data, ...newData]);
+      setOriginalNeeds((prevNeeds) => [...prevNeeds, ...newData]);
+      setFilteredNeeds((prevNeeds) => [...prevNeeds, ...newData]);
+
+      console.log(event.target);
 
       if (response.data.hasMoreItems === false) {
-        console.log(response.data.hasMoreItems);
         event.target.style.display = "none";
       }
     } catch (e) {
@@ -76,16 +71,15 @@ const ContributePage = () => {
     if (category === "All Categories") {
       setFilteredNeeds(originalNeeds);
     } else {
-      console.log(activeCategory);
       const filteredNeeds = originalNeeds.filter((item) => {
         return item.props.needData.category === category;
       });
+
       setFilteredNeeds(filteredNeeds);
     }
   };
 
   useEffect(() => {
-    setActiveCategory("All Categories");
     fetchNeeds();
   }, []);
 
@@ -216,7 +210,7 @@ const ContributePage = () => {
             ) : (
               <div>
                 <div className={styles.needsCardContainer}>{filteredNeeds}</div>
-                {filteredNeeds.length != 0 ? (
+                {filteredNeeds.length !== 0 ? (
                   <div className={styles.loadMoreLink} onClick={loadMore}>
                     Load More
                     <EastIcon className={styles.icon} />
@@ -224,6 +218,7 @@ const ContributePage = () => {
                 ) : (
                   <div>No results found</div>
                 )}
+                {filteredNeeds.length === 0 ? <div>No results found</div> : ""}
               </div>
             )}
           </div>

@@ -1,0 +1,44 @@
+.addDoneeDialogContainer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  background-color: var(--color1);
+  width: 100%;
+  color: var(--color2);
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 10px;
+}
+
+.form {
+  margin: 20px 5px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.textFields {
+  margin: 10px 0;
+}
+
+.addDoneeDialogContainer input[type="number"] {
+  -moz-appearance: textfield;
+}
+.addDoneeDialogContainer input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.familyInfoRow {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}

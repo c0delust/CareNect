@@ -54,8 +54,8 @@ label {
   margin: 5px 0px;
 }
 .registrationContainer input[type="text"],
-input[type="tel"],
-input[type="file"] {
+.registrationContainer input[type="tel"],
+.registrationContainer input[type="file"] {
   width: 95%;
   padding: 10px;
   margin-bottom: 10px;

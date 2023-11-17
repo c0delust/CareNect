@@ -1,0 +1,72 @@
+html {
+  background-color: #f8f8f8;
+}
+
+.dataTableContainer {
+  width: 90%;
+  margin-top: 20px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.globalFilterContainer {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.materialButton button {
+  background-color: aqua;
+  color: black;
+  padding: 10px 25px;
+  width: max-content;
+}
+
+.dataTable {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.dataTableContainer th {
+  background-color: #eff6ff;
+}
+
+.globalFilter {
+  min-width: 50%;
+  margin: 0px;
+  border: 1px solid var(--color1);
+}
+
+.globalFilter:focus {
+  box-shadow: 0px 0px 10px 0px rgba(88, 120, 195, 0.5);
+}
+
+.padding {
+  padding: 15px;
+}
+
+.addIcon svg {
+  color: rgb(44, 165, 17);
+  width: 30px;
+  height: auto;
+}
+
+.addIcon:hover,
+.addIcon svg:hover {
+  cursor: pointer;
+  color: rgb(34, 128, 13);
+}
+
+.viewMore svg {
+  color: rgb(91, 153, 235);
+  width: 30px;
+  height: auto;
+}
+
+.viewMore:hover,
+.viewMore svg:hover {
+  cursor: pointer;
+  color: rgb(55, 109, 179);
+}

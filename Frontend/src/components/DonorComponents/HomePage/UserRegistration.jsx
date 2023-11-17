@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import { ThreeDots } from "react-loader-spinner";
+import { BACKEND_URL } from "../../../utils/constants";
 
 const UserRegistration = () => {
-  const REGISTER_API = "http://localhost:3000/donor/register";
-
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -56,7 +55,7 @@ const UserRegistration = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.post(REGISTER_API, data, {
+      const response = await axios.post(`${BACKEND_URL}/donor/register`, data, {
         mode: "cors",
         withCredentials: true,
       });
@@ -79,7 +78,7 @@ const UserRegistration = () => {
 
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/donor/logout", {
+      const response = await axios.get(`${BACKEND_URL}/donor/logout`, {
         mode: "cors",
         withCredentials: true,
       });

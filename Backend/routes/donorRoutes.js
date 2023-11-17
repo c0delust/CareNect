@@ -56,8 +56,10 @@ router.get("/loginFailed", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  logger.info("Donor Logging out");
-  res.redirect(process.env.FRONTEND_URL);
+  req.session.destroy(function () {
+    logger.info("Donor Logging out");
+    res.redirect(process.env.FRONTEND_URL);
+  });
 });
 
 // Registration Route

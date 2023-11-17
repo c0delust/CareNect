@@ -1,0 +1,42 @@
+.statusCardContainer {
+  height: 170px;
+  width: 300px;
+  background-color: red;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.content {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  color: var(--color1);
+  margin: 10px;
+  text-align: end;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.count {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.assetContainer {
+  position: relative;
+  height: 60%;
+}
+
+.assetContainer > img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90px;
+  height: auto;
+  filter: invert(100%);
+  opacity: 0.6;
+  transform: rotate(10deg);
+  object-fit: cover;
+}

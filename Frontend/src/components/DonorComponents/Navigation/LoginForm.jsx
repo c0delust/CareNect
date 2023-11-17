@@ -1,8 +1,9 @@
 import styles from "./LoginForm.module.css";
+import { BACKEND_URL } from "../../../utils/constants";
 
 const LoginForm = () => {
   const googleAuth = () => {
-    window.open("http://localhost:3000/donor/google", "_self");
+    window.open(`${BACKEND_URL}/donor/google`, "_self");
   };
 
   return (

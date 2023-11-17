@@ -1,12 +1,12 @@
 import NavigationManager from "./components/DonorComponents/Navigation/NavigationManager.jsx";
 
-function App() {
+const DonorSite = () => {
   return (
     <>
       <NavigationManager />
       {/* <Header /> */}
     </>
   );
-}
+};
 
-export default App;
+export default DonorSite;

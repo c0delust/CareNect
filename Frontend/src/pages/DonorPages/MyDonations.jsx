@@ -1,7 +1,7 @@
 import styles from "./MyDonations.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CheckAuth from "../../utils/CheckAuth";
+import CheckDonorAuth from "../../utils/CheckDonorAuth";
 
 const MyDonations = () => {
   const [data, setData] = useState(null);
@@ -9,7 +9,7 @@ const MyDonations = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const response = await CheckAuth();
+      const response = await CheckDonorAuth();
       console.log(response);
     };
     checkAuth();
