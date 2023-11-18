@@ -68,7 +68,7 @@ router.post("/", upload.any(), async (req, res) => {
   } catch (error) {
     return res.status(403).json({
       error: true,
-      message: "User Registration Failed: File Upload Unsuccessful.",
+      message: "User Registration Failed",
     });
   }
 });

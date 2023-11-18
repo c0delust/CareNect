@@ -19,6 +19,7 @@ import { Dialog } from "@mui/material";
 const DoneeDataTable = () => {
   const [donees, setDonees] = useState([]);
   const [addDoneeDialogOpen, setAddDoneeDialogOpen] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const fetchDonees = async () => {
     try {
@@ -54,7 +55,9 @@ const DoneeDataTable = () => {
 
   useEffect(() => {
     fetchDonees();
-  }, []);
+    setRefresh(false);
+    console.log("useEffect Called");
+  }, [refresh]);
 
   const [globalFilter, setGlobalFilter] = useState(null);
 
@@ -113,11 +116,20 @@ const DoneeDataTable = () => {
     setAddDoneeDialogOpen(true);
   };
 
+  const handleAddDoneeDialogClose = (event, reason) => {
+    console.log("here");
+    if (reason !== "backdropClick") {
+      setRefresh(true);
+      setAddDoneeDialogOpen(false);
+    }
+  };
+
   return (
     <>
       <AddDoneeDialog
         open={addDoneeDialogOpen}
         setOpen={setAddDoneeDialogOpen}
+        onClose={handleAddDoneeDialogClose}
       />
 
       <div className={styles.dataTableContainer}>

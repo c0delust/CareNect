@@ -4,23 +4,83 @@ import { Dialog } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
+import axios from "axios";
+import { BACKEND_URL } from "../../utils/constants";
+import CloseIcon from "@mui/icons-material/Close";
 
-const AddDoneeDialog = ({ open, setOpen }) => {
+const AddDoneeDialog = ({ open, setOpen, onClose }) => {
   const [formData, setFormData] = useState({
     fullName: "",
-    // password: "",
+    phoneNumber1: "",
+    phoneNumber2: "",
+    address: "",
+    aadhaarCardNumber: "",
+    memberCount: "",
+    income: "",
+    incomeSource: "",
+    photoFile: "",
+    aadhaarCardPhoto: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position.coords.latitude, position.coords.longitude);
+        async (position) => {
+          let coordinates = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+
+          const {
+            fullName,
+            phoneNumber1,
+            phoneNumber2,
+            address,
+            aadhaarCardNumber,
+            memberCount,
+            income,
+            incomeSource,
+            photoFile,
+            aadhaarCardPhoto,
+          } = formData;
+
+          const data = new FormData();
+          data.append("fullName", fullName);
+          data.append("phoneNumber1", phoneNumber1);
+          data.append("phoneNumber2", phoneNumber2);
+          data.append("address", address);
+          data.append("aadhaarCardNumber", aadhaarCardNumber);
+          data.append("memberCount", memberCount);
+          data.append("income", income);
+          data.append("incomeSource", incomeSource);
+          data.append("photoFile", photoFile);
+          data.append("aadhaarCardPhoto", aadhaarCardPhoto);
+          data.append("latitude", coordinates.latitude);
+          data.append("longitude", coordinates.longitude);
+
+          try {
+            const response = await axios.post(
+              BACKEND_URL + "/ngo/registerDonee",
+              data,
+              {
+                mode: "cors",
+                withCredentials: true,
+              }
+            );
+
+            if (response.status === 201) {
+              onClose();
+            }
+          } catch (error) {
+            console.log(error);
+          }
+
+          console.log(coordinates);
         },
         (err) => {
           console.log(err);
+          return;
         }
       );
     }
@@ -37,17 +97,16 @@ const AddDoneeDialog = ({ open, setOpen }) => {
   };
 
   return (
-    <Dialog
-      open={open}
-      onClose={() => setOpen(false)}
-      maxWidth="sm"
-      fullWidth={true}
-    >
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth={true}>
       <div className={styles.addDoneeDialogContainer}>
         <div className={styles.title}>ADD DONEE</div>
+        <div className={styles.regFormClose} onClick={onClose}>
+          <CloseIcon />
+        </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <TextField
+            required
             id="outlined-basic"
             variant="outlined"
             label="Full Name"
@@ -61,6 +120,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
           </TextField>
 
           <TextField
+            required
             variant="outlined"
             label="Phone Number 1"
             name="phoneNumber1"
@@ -79,6 +139,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
           </TextField>
 
           <TextField
+            required
             variant="outlined"
             label="Phone Number 2"
             name="phoneNumber2"
@@ -96,6 +157,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
           </TextField>
 
           <TextField
+            required
             variant="outlined"
             label="Address"
             name="address"
@@ -108,9 +170,10 @@ const AddDoneeDialog = ({ open, setOpen }) => {
           </TextField>
 
           <TextField
+            required
             variant="outlined"
             label="Aadhaar Card Number"
-            name="aadhharCardNumber"
+            name="aadhaarCardNumber"
             type="text"
             fullWidth
             margin="none"
@@ -125,6 +188,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
             </div>
             <div className={styles.familyInfoRow}>
               <TextField
+                required
                 variant="outlined"
                 label="Member Count"
                 name="memberCount"
@@ -137,6 +201,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
               </TextField>
 
               <TextField
+                required
                 variant="outlined"
                 label="Income"
                 name="income"
@@ -154,6 +219,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
               </TextField>
 
               <TextField
+                required
                 variant="outlined"
                 label="Income Source"
                 name="incomeSource"
@@ -172,6 +238,8 @@ const AddDoneeDialog = ({ open, setOpen }) => {
               Upload Photo
             </div>
             <input
+              required
+              name="photoFile"
               type="file"
               style={{
                 padding: "15px",
@@ -179,6 +247,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
                 borderRadius: "5px",
                 width: "100%",
               }}
+              onChange={handleChange}
             ></input>
           </div>
 
@@ -187,6 +256,8 @@ const AddDoneeDialog = ({ open, setOpen }) => {
               Upload Aadhaar Card
             </div>
             <input
+              required
+              name="aadhaarCardPhoto"
               type="file"
               style={{
                 padding: "15px",
@@ -194,6 +265,7 @@ const AddDoneeDialog = ({ open, setOpen }) => {
                 borderRadius: "5px",
                 width: "100%",
               }}
+              onChange={handleChange}
             ></input>
           </div>
 

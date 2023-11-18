@@ -1,29 +1,30 @@
 .dialogContent {
-  background: var(--gradient);
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   width: 400px;
   height: 150px;
-  border-top: 2px solid var(--color2);
 }
 
 .dialogContent > .dialogTitle {
+  text-align: center;
+  width: 100%;
+  background: var(--gradient);
   color: var(--color2);
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: bold;
   letter-spacing: 1.5px;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
-.dialogContent > .googleSignIn {
+.dialogContent .googleSignIn {
   overflow: hidden;
   object-fit: cover;
-  color: var(--background);
-  border: 2px solid var(--background);
-  height: 20px;
+  color: #1a73e8;
+  border: 2px solid #1a73e8;
+  height: 50px;
   width: 300px;
   display: flex;
   justify-content: space-around;
@@ -34,7 +35,7 @@
 }
 
 .googleSignIn > img {
-  padding: 8px;
+  padding: 5px;
 }
 
 .googleSignIn:hover {

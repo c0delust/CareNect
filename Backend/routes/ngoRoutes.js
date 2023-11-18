@@ -4,7 +4,8 @@ import NGO from "../models/ngo_model.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import DONEES from "../models/donee_model.js";
+import DONEE from "../models/donee_model.js";
+import doneeRegisterRoute from "./doneeRegister.js";
 
 dotenv.config();
 const router = Router();
@@ -56,6 +57,8 @@ router.post("/login", async (req, res) => {
   });
 });
 
+router.use("/registerDonee", isAuthenticated, doneeRegisterRoute);
+
 router.get("/getNGO", isAuthenticated, async (req, res) => {
   const ngo = await NGO.findOne(
     { _id: req.id },
@@ -66,7 +69,7 @@ router.get("/getNGO", isAuthenticated, async (req, res) => {
 });
 
 router.get("/getDonees", isAuthenticated, async (req, res) => {
-  const data = await DONEES.find({ onBoardedBy: req.id }).lean();
+  const data = await DONEE.find({ onBoardedBy: req.id }).lean();
   return res.json(data);
 });
 

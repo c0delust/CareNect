@@ -4,6 +4,7 @@ const doneeSchema = new mongoose.Schema({
   _id: { type: mongoose.Schema.Types.Mixed, required: true },
   onBoardedBy: String,
   fullName: String,
+  photoUrl: String,
   phoneNumbers: [String],
   address: String,
   latitude: String,
@@ -22,9 +23,9 @@ const doneeSchema = new mongoose.Schema({
   registeredOn: Date,
 });
 
-const DONEES = mongoose.model(
+const DONEE = mongoose.model(
   "DoneesCollection",
   doneeSchema,
   "DoneesCollection"
 );
-export default DONEES;
+export default DONEE;

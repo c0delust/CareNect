@@ -8,7 +8,7 @@ const CloudinaryUpload = async (id, file, folderName) => {
   const extension = () => {
     const parts = file.originalname.split(".");
     if (parts.length > 1) {
-      return parts.pop();
+      return "." + parts.pop();
     } else {
       return "";
     }

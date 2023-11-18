@@ -1,19 +1,36 @@
 .addDoneeDialogContainer {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
 .title {
-  text-align: center;
-  background-color: var(--color1);
+  background: var(--gradient);
   width: 100%;
+  text-align: center;
   color: var(--color2);
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 1.5px;
   padding: 10px;
+}
+
+.regFormClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  margin: 15px 20px;
+  cursor: pointer;
+  color: var(--color1-extralight);
+  border-radius: 50%;
+  transition: 0.3s ease-in-out transform;
+}
+
+.regFormClose:hover {
+  color: var(--color2);
+  transform: scale(1.2);
 }
 
 .form {
@@ -41,4 +58,25 @@ input::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-around;
   gap: 15px;
+}
+
+.form input::file-selector-button {
+  color: var(--color1-light);
+  background-color: var(--color1-extralight);
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  margin-right: 15px;
+  width: 6em;
+}
+
+.form input::file-selector-button:hover {
+  font-weight: 600;
+  color: var(--color1-light);
+  background-color: var(--color1-extralight);
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 5px rgba(94, 94, 94, 0.1);
+  margin-right: 15px;
 }

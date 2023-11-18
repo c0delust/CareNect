@@ -64,7 +64,7 @@ router.get("/logout", (req, res) => {
 
 // Registration Route
 
-router.use("/register", donorRegisterRoute);
+router.use("/register", isAuthenticated, donorRegisterRoute);
 
 // Data Routes
 
