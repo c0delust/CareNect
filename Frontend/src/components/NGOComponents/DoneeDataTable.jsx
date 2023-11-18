@@ -59,11 +59,11 @@ const DoneeDataTable = () => {
     console.log("useEffect Called");
   }, [refresh]);
 
-  const [globalFilter, setGlobalFilter] = useState(null);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const onInputChange = (e) => {
     if (!e.target.value) {
-      setGlobalFilter(null);
+      setGlobalFilter("");
     }
     setGlobalFilter(e.target.value);
   };
@@ -117,7 +117,6 @@ const DoneeDataTable = () => {
   };
 
   const handleAddDoneeDialogClose = (event, reason) => {
-    console.log("here");
     if (reason !== "backdropClick") {
       setRefresh(true);
       setAddDoneeDialogOpen(false);

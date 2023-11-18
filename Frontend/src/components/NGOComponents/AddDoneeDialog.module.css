@@ -45,14 +45,14 @@
   margin: 10px 0;
 }
 
-.addDoneeDialogContainer input[type="number"] {
+/* .addDoneeDialogContainer input[type="number"] {
   -moz-appearance: textfield;
 }
 .addDoneeDialogContainer input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 .familyInfoRow {
   display: flex;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import styles from "./AddDoneeDialog.module.css";
 import { Dialog } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -8,8 +8,18 @@ import axios from "axios";
 import { BACKEND_URL } from "../../utils/constants";
 import CloseIcon from "@mui/icons-material/Close";
 import CNTextField from "../CNTextField";
+import { ThreeDots } from "react-loader-spinner";
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 const AddDoneeDialog = ({ open, setOpen, onClose }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+
+  useEffect(() => {
+    setSnackBarOpen(false);
+  }, [open]);
+
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber1: "",
@@ -26,6 +36,7 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (navigator.geolocation) {
+      setIsLoading(true);
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           let coordinates = {
@@ -48,8 +59,8 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
 
           const data = new FormData();
           data.append("fullName", fullName);
-          data.append("phoneNumber1", phoneNumber1);
-          data.append("phoneNumber2", phoneNumber2);
+          data.append("phoneNumber1", "+91" + phoneNumber1);
+          data.append("phoneNumber2", "+91" + phoneNumber2);
           data.append("address", address);
           data.append("aadhaarCardNumber", aadhaarCardNumber);
           data.append("memberCount", memberCount);
@@ -71,15 +82,19 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
             );
 
             if (response.status === 201) {
-              onClose();
+              setSnackBarOpen(true);
+              setIsLoading(false);
+              e.target.reset();
             }
           } catch (error) {
+            setIsLoading(false);
             console.log(error);
           }
 
           console.log(coordinates);
         },
         (err) => {
+          setIsLoading(false);
           console.log(err);
           return;
         }
@@ -97,8 +112,39 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
     });
   };
 
+  const handleSnackBarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackBarOpen(false);
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth={true}>
+    <Dialog
+      open={open}
+      onClose={() => {
+        setSnackBarOpen(false);
+        onClose();
+      }}
+      maxWidth="sm"
+      fullWidth={true}
+    >
+      <Snackbar
+        open={snackBarOpen}
+        autoHideDuration={10000}
+        onClose={handleSnackBarClose}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleSnackBarClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Donee Registered Successfully!
+        </MuiAlert>
+      </Snackbar>
       <div className={styles.addDoneeDialogContainer}>
         <div className={styles.title}>ADD DONEE</div>
         <div className={styles.regFormClose} onClick={onClose}>
@@ -214,6 +260,10 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
                 label="Member Count"
                 name="memberCount"
                 type="number"
+                inputProps={{
+                  max: 20,
+                  min: 1,
+                }}
                 fullWidth
                 margin="none"
                 onChange={handleChange}
@@ -317,7 +367,27 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
               color: "var(--color1)",
             }}
           >
-            Submit
+            {!isLoading ? (
+              "Submit"
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "25px",
+                }}
+              >
+                <ThreeDots
+                  color="var(--color1)"
+                  radius="5"
+                  wrapperStyle={{}}
+                  wrapperClassName=""
+                  visible={true}
+                />
+              </div>
+            )}
           </Button>
         </form>
       </div>
