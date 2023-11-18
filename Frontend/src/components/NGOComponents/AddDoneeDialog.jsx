@@ -3,10 +3,11 @@ import styles from "./AddDoneeDialog.module.css";
 import { Dialog } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
 import axios from "axios";
 import { BACKEND_URL } from "../../utils/constants";
 import CloseIcon from "@mui/icons-material/Close";
+import CNTextField from "../CNTextField";
 
 const AddDoneeDialog = ({ open, setOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -105,7 +106,7 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <TextField
+          <CNTextField
             required
             id="outlined-basic"
             variant="outlined"
@@ -117,9 +118,9 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
             onChange={handleChange}
           >
             {" "}
-          </TextField>
+          </CNTextField>
 
-          <TextField
+          <CNTextField
             required
             variant="outlined"
             label="Phone Number 1"
@@ -130,15 +131,19 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
             inputProps={{
               inputMode: "numeric",
               pattern: "[0-9+]*",
-              maxLength: 13,
-              minLength: 13,
+              maxLength: 10,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">+91</InputAdornment>
+              ),
             }}
             onChange={handleChange}
           >
             {" "}
-          </TextField>
+          </CNTextField>
 
-          <TextField
+          <CNTextField
             required
             variant="outlined"
             label="Phone Number 2"
@@ -148,15 +153,20 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
             inputProps={{
               inputMode: "numeric",
               pattern: "[0-9+]*",
-              maxLength: 13,
+              maxLength: 10,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">+91</InputAdornment>
+              ),
             }}
             margin="none"
             onChange={handleChange}
           >
             {" "}
-          </TextField>
+          </CNTextField>
 
-          <TextField
+          <CNTextField
             required
             variant="outlined"
             label="Address"
@@ -167,27 +177,38 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
             onChange={handleChange}
           >
             {" "}
-          </TextField>
+          </CNTextField>
 
-          <TextField
+          <CNTextField
             required
             variant="outlined"
             label="Aadhaar Card Number"
             name="aadhaarCardNumber"
             type="text"
+            inputProps={{
+              inputMode: "numeric",
+              pattern: "[0-9]*",
+              maxLength: 12,
+            }}
             fullWidth
             margin="none"
             onChange={handleChange}
           >
             {" "}
-          </TextField>
+          </CNTextField>
 
           <div>
-            <div style={{ marginBottom: "10px", fontWeight: "600" }}>
+            <div
+              style={{
+                marginBottom: "10px",
+                fontWeight: "600",
+                color: "var(--color1)",
+              }}
+            >
               Family Info
             </div>
             <div className={styles.familyInfoRow}>
-              <TextField
+              <CNTextField
                 required
                 variant="outlined"
                 label="Member Count"
@@ -198,9 +219,9 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
                 onChange={handleChange}
               >
                 {" "}
-              </TextField>
+              </CNTextField>
 
-              <TextField
+              <CNTextField
                 required
                 variant="outlined"
                 label="Income"
@@ -211,14 +232,19 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
                   pattern: "[0-9]*",
                   maxLength: 6,
                 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">₹</InputAdornment>
+                  ),
+                }}
                 fullWidth
                 margin="none"
                 onChange={handleChange}
               >
                 {" "}
-              </TextField>
+              </CNTextField>
 
-              <TextField
+              <CNTextField
                 required
                 variant="outlined"
                 label="Income Source"
@@ -229,12 +255,18 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
                 onChange={handleChange}
               >
                 {" "}
-              </TextField>
+              </CNTextField>
             </div>
           </div>
 
           <div>
-            <div style={{ marginBottom: "10px", fontWeight: "600" }}>
+            <div
+              style={{
+                marginBottom: "10px",
+                fontWeight: "600",
+                color: "var(--color1)",
+              }}
+            >
               Upload Photo
             </div>
             <input
@@ -252,7 +284,13 @@ const AddDoneeDialog = ({ open, setOpen, onClose }) => {
           </div>
 
           <div>
-            <div style={{ marginBottom: "10px", fontWeight: "600" }}>
+            <div
+              style={{
+                marginBottom: "10px",
+                fontWeight: "600",
+                color: "var(--color1)",
+              }}
+            >
               Upload Aadhaar Card
             </div>
             <input

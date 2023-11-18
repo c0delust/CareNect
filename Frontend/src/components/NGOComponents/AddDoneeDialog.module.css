@@ -71,7 +71,7 @@ input::-webkit-inner-spin-button {
 }
 
 .form input::file-selector-button:hover {
-  font-weight: 600;
+  /* font-weight: 600; */
   color: var(--color1-light);
   background-color: var(--color1-extralight);
   padding: 0.5em;

@@ -14,77 +14,72 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 30px;
 
   margin: 50px 0px;
 }
 
 .title {
-  color: var(--background);
+  color: var(--color2);
   font-size: 40px;
   font-weight: bold;
   letter-spacing: 1.5px;
   margin: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .formContainer form {
+  height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.formContainer label {
-  display: block;
-  font-size: 17.5px;
-  font-weight: 500;
-  padding: 8px 0px;
-}
-
-.formContainer input[type="text"],
-input[type="password"] {
-  display: block;
-
-  width: 95%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
-  padding: 15px 10px;
-  font-size: 14px;
-  font-weight: 300;
-  outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--background);
-  margin-bottom: 20px;
-}
-
-.formContainer ::placeholder {
+.focusedInput {
   color: white;
 }
 
 .passwordContainer {
+  width: 100%;
   position: relative;
 }
 
 .eye {
   position: absolute;
-  right: 30px;
-  top: 10px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
   color: var(--background);
+  margin-right: 15px;
+}
+
+.passwordContainer input[type="text"],
+.passwordContainer input[type="password"] {
+  padding-right: 50px;
 }
 
 .submitButton {
-  margin-top: 30px;
   width: 100%;
-  background-color: var(--background);
-  color: var(--color1);
+  background-color: rgb(20, 33, 61, 0.4);
+  color: var(--color2);
   padding: 10px 0;
   font-size: 18px;
-  font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
-  border: none;
+  border: 2px solid var(--color2);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .submitButton:hover {
   background-color: var(--color2);
   color: var(--color1);
+  box-shadow: 0 12px 12px 0 rgba(43, 43, 43, 0.5);
 }
 
 .submitButton:focus {
