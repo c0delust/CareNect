@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import DONEE from "../models/donee_model.js";
 import doneeRegisterRoute from "./doneeRegister.js";
+import NEED from "../models/need_model.js";
 
 dotenv.config();
 const router = Router();
@@ -71,6 +72,28 @@ router.get("/getNGO", isAuthenticated, async (req, res) => {
 router.get("/getDonees", isAuthenticated, async (req, res) => {
   const data = await DONEE.find({ onBoardedBy: req.id }).lean();
   return res.json(data);
+});
+
+router.get("/getCount", isAuthenticated, async (req, res) => {
+  let count;
+  switch (req.query.heading) {
+    case "Total Donees":
+      count = await DONEE.countDocuments({ onBoardedBy: req.id });
+      return res.json({ count });
+    case "Verified Donees":
+      count = await DONEE.countDocuments({
+        onBoardedBy: req.id,
+        "verificationStatus.phone": true,
+        "verificationStatus.aadhaarCard": true,
+      });
+      return res.json({ count });
+    case "Total Needs":
+      count = await NEED.countDocuments({ ngoID: req.id });
+      return res.json({ count });
+    case "Active Needs":
+      count = await NEED.countDocuments({ ngoID: req.id, status: "active" });
+      return res.json({ count });
+  }
 });
 
 router.get("/logout", (req, res) => {

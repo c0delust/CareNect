@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react";
 import styles from "./StatusCard.module.css";
+import axios from "axios";
+import { BACKEND_URL } from "../../utils/constants";
 
 const StatusCard = ({ color, heading, image }) => {
-  const count = 1000;
+  const [count, setCount] = useState(0);
+
+  const getCount = async () => {
+    try {
+      const response = await axios.get(
+        BACKEND_URL + "/ngo/getCount?heading=" + heading,
+        {
+          mode: "cors",
+          withCredentials: true,
+        }
+      );
+
+      setCount(response.data.count);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getCount();
+  }, []);
 
   return (
     <>

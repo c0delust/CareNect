@@ -70,7 +70,7 @@ const DashboardPage = () => {
             <StatusCard
               // color={"#e91e63"}
               color={"#9bc53d"}
-              heading={"Verified Needs"}
+              heading={"Active Needs"}
               image={
                 "https://img.icons8.com/?size=256&id=CiRY7D6pnanH&format=png"
               }
