@@ -11,7 +11,7 @@ const needSchema = new mongoose.Schema({
   donors: [String],
   deadline: Date,
   status: String,
-  needImages: [String],
+  needImage: String,
 });
 
 const NEED = mongoose.model("NeedsCollection", needSchema, "NeedsCollection");

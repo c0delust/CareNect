@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import DONEE from "../models/donee_model.js";
 import doneeRegisterRoute from "./doneeRegister.js";
+import needRegisterRoute from "./needRegister.js";
 import NEED from "../models/need_model.js";
 
 dotenv.config();
@@ -59,6 +60,8 @@ router.post("/login", async (req, res) => {
 });
 
 router.use("/registerDonee", isAuthenticated, doneeRegisterRoute);
+
+router.use("/registerNeed", isAuthenticated, needRegisterRoute);
 
 router.get("/getNGO", isAuthenticated, async (req, res) => {
   const ngo = await NGO.findOne(

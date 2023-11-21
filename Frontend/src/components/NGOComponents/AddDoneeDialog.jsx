@@ -12,7 +12,7 @@ import { ThreeDots } from "react-loader-spinner";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 
-const AddDoneeDialog = ({ open, setOpen, onClose }) => {
+const AddDoneeDialog = ({ open, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 

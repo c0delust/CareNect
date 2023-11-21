@@ -15,11 +15,14 @@ import Button from "@mui/material/Button";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddDoneeDialog from "./AddDoneeDialog";
 import { Dialog } from "@mui/material";
+import AddNeedDialog from "./AddNeedDialog";
 
 const DoneeDataTable = () => {
   const [donees, setDonees] = useState([]);
   const [addDoneeDialogOpen, setAddDoneeDialogOpen] = useState(false);
+  const [addNeedDialogOpen, setAddNeedDialogOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [doneeForAddNeed, setDoneeForAddNeed] = useState(null);
 
   const fetchDonees = async () => {
     try {
@@ -27,8 +30,6 @@ const DoneeDataTable = () => {
         mode: "cors",
         withCredentials: true,
       });
-
-      //   console.log(response.data);
 
       const resultMapArray = response.data.map((item) => {
         const result = {
@@ -95,7 +96,7 @@ const DoneeDataTable = () => {
   const addNeedTemplate = (rowData) => {
     return (
       <>
-        <div className={styles.addIcon}>
+        <div className={styles.addIcon} onClick={() => addNeed(rowData)}>
           <AddCircleIcon />
         </div>
       </>
@@ -116,6 +117,11 @@ const DoneeDataTable = () => {
     setAddDoneeDialogOpen(true);
   };
 
+  const addNeed = (rowData) => {
+    setDoneeForAddNeed(rowData);
+    setAddNeedDialogOpen(true);
+  };
+
   const handleAddDoneeDialogClose = (event, reason) => {
     if (reason !== "backdropClick") {
       setRefresh(true);
@@ -127,9 +133,14 @@ const DoneeDataTable = () => {
     <>
       <AddDoneeDialog
         open={addDoneeDialogOpen}
-        setOpen={setAddDoneeDialogOpen}
         onClose={handleAddDoneeDialogClose}
       />
+
+      <AddNeedDialog
+        open={addNeedDialogOpen}
+        setOpen={setAddNeedDialogOpen}
+        donee={doneeForAddNeed}
+      ></AddNeedDialog>
 
       <div className={styles.dataTableContainer}>
         <div className={styles.row}>

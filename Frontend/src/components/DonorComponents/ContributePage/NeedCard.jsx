@@ -6,7 +6,7 @@ const NeedCard = ({ needData }) => {
       <div className={styles.needCardContainer}>
         <div className={styles.needCard}>
           <div className={styles.needImageContainer}>
-            <img src={needData.needImages[0]} />
+            <img src={needData.needImage} />
           </div>
           <div className={styles.needContent}>
             <div className={styles.needCardCategory}>{needData.category}</div>
