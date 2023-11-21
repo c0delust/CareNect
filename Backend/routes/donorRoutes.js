@@ -70,9 +70,9 @@ router.use("/register", isAuthenticated, donorRegisterRoute);
 
 router.get("/getDonor", isAuthenticated, async (req, res) => {
   try {
-    const donor = await Donor.findOne({ googleId: req.user.id }).select(
-      "googleId fullName email userPhoto"
-    );
+    const donor = await Donor.findOne({
+      googleId: req.user.id,
+    }).select("googleId fullName email userPhoto");
 
     res.status(200).json(donor);
   } catch (error) {
@@ -95,10 +95,12 @@ router.get("/getNeeds", isAuthenticated, async (req, res) => {
     const pageNumber = req.query.page;
 
     const skip = (pageNumber - 1) * pageSize;
-    const totalCount = await NEED.countDocuments();
+    const totalCount = await NEED.countDocuments({ status: "active" });
     const limit = Math.min(pageSize, totalCount - skip);
 
-    const needsList = await NEED.find().skip(skip).limit(limit);
+    const needsList = await NEED.find({ status: "active" })
+      .skip(skip)
+      .limit(limit);
 
     const hasMoreItems = totalCount > skip + limit;
 

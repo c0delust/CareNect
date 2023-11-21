@@ -43,7 +43,7 @@ router.post("/", upload.any(), async (req, res) => {
       ngoID: req.id,
       donors: [],
       deadline: formData.deadline,
-      status: "Pending",
+      status: "pending",
       needImage: needImageUrl,
     });
 
