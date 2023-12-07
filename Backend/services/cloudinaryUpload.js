@@ -29,7 +29,7 @@ const CloudinaryUpload = async (id, file, folderName) => {
           {
             public_id: fileName,
             folder: folderName,
-            resource_type: "raw",
+            resource_type: "auto",
           },
           (error, result) => {
             if (error) {

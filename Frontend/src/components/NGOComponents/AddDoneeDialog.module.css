@@ -45,15 +45,6 @@
   margin: 10px 0;
 }
 
-/* .addDoneeDialogContainer input[type="number"] {
-  -moz-appearance: textfield;
-}
-.addDoneeDialogContainer input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
 .familyInfoRow {
   display: flex;
   justify-content: space-around;
@@ -71,7 +62,6 @@ input::-webkit-inner-spin-button {
 }
 
 .form input::file-selector-button:hover {
-  /* font-weight: 600; */
   color: var(--color1-light);
   background-color: var(--color1-extralight);
   padding: 0.5em;

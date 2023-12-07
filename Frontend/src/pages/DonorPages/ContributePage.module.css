@@ -63,7 +63,6 @@
 }
 
 .categoryItem:hover {
-  color: var(--color2);
   font-weight: 600;
 }
 
@@ -84,7 +83,8 @@
 
 .loadMoreLink > .icon {
   padding-left: 10px;
-  font-size: medium;
+  text-align: center;
+  vertical-align: center;
 }
 
 .loadMoreLink:hover {

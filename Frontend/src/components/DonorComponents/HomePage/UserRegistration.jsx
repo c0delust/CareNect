@@ -5,6 +5,9 @@ import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import { ThreeDots } from "react-loader-spinner";
 import { BACKEND_URL } from "../../../utils/constants";
+import CNTextField from "../../CNTextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
 
 const UserRegistration = () => {
   const [open, setOpen] = useState(false);
@@ -128,27 +131,94 @@ const UserRegistration = () => {
     <>
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth={true}>
         <div className={styles.registrationContainer}>
+          <div className={styles.title}>Welcome! Complete your Profile</div>
           <div className={styles.regFormClose} onClick={handleClose}>
             <CloseIcon />
           </div>
-          <h2>Welcome! Complete your Profile</h2>
-          <div>
-            {/* <p></p> */}
-            <form
-              method="POST"
-              encType="multipart/form-data"
-              onSubmit={handleSubmit}
+          <form
+            className={styles.form}
+            method="POST"
+            encType="multipart/form-data"
+            onSubmit={handleSubmit}
+          >
+            <CNTextField
+              required
+              id="outlined-basic"
+              variant="outlined"
+              label="Full Name"
+              name="fullName"
+              type="text"
+              fullWidth
+              margin="none"
+              onChange={handleChange}
             >
-              <label htmlFor="fullName">Full Name:</label>
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                required
-                onChange={handleChange}
-              />
+              {" "}
+            </CNTextField>
 
-              <label htmlFor="userPhoto">User Photo:</label>
+            <CNTextField
+              required
+              //variant="outlined"
+              label="Phone Number"
+              name="phoneNumber"
+              fullWidth
+              margin="none"
+              type="text"
+              inputProps={{
+                inputMode: "numeric",
+                pattern: "[0-9+]*",
+                maxLength: 10,
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">+91</InputAdornment>
+                ),
+              }}
+              onChange={handleChange}
+            >
+              {" "}
+            </CNTextField>
+
+            <CNTextField
+              required
+              variant="outlined"
+              label="Address"
+              name="address"
+              type="text"
+              fullWidth
+              margin="none"
+              onChange={handleChange}
+            >
+              {" "}
+            </CNTextField>
+
+            <CNTextField
+              required
+              variant="outlined"
+              label="Aadhaar Card Number"
+              name="aadhaarCardNumber"
+              type="text"
+              inputProps={{
+                inputMode: "numeric",
+                pattern: "[0-9]*",
+                maxLength: 12,
+              }}
+              fullWidth
+              margin="none"
+              onChange={handleChange}
+            >
+              {" "}
+            </CNTextField>
+
+            <div>
+              <div
+                style={{
+                  marginBottom: "10px",
+                  fontWeight: "600",
+                  color: "var(--color1)",
+                }}
+              >
+                User Photo
+              </div>
               <input
                 type="file"
                 id="userPhoto"
@@ -156,36 +226,25 @@ const UserRegistration = () => {
                 accept="image/*"
                 required
                 onChange={handleChange}
+                style={{
+                  padding: "15px",
+                  border: "1px solid #bebebe",
+                  borderRadius: "5px",
+                  width: "100%",
+                }}
               />
+            </div>
 
-              <label htmlFor="phoneNumber">Phone Number:</label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                required
-                onChange={handleChange}
-              />
-
-              <label htmlFor="address">Address:</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                required
-                onChange={handleChange}
-              />
-
-              <label htmlFor="aadhaarCardNumber">Aadhaar Card Number:</label>
-              <input
-                type="text"
-                id="aadhaarCardNumber"
-                name="aadhaarCardNumber"
-                required
-                onChange={handleChange}
-              />
-
-              <label htmlFor="aadhaarCardPhoto">Aadhaar Card Photo:</label>
+            <div>
+              <div
+                style={{
+                  marginBottom: "10px",
+                  fontWeight: "600",
+                  color: "var(--color1)",
+                }}
+              >
+                Aadhaar Card Photo
+              </div>
               <input
                 type="file"
                 id="aadhaarCardPhoto"
@@ -193,22 +252,48 @@ const UserRegistration = () => {
                 accept="image/*"
                 required
                 onChange={handleChange}
+                style={{
+                  padding: "15px",
+                  border: "1px solid #bebebe",
+                  borderRadius: "5px",
+                  width: "100%",
+                }}
               />
+            </div>
 
-              {isLoading ? (
-                <div className={styles.loader}>
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              style={{
+                padding: "10px",
+                background: "var(--color2)",
+                color: "var(--color1)",
+              }}
+            >
+              {!isLoading ? (
+                "Register"
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "25px",
+                  }}
+                >
                   <ThreeDots
-                    width="50"
-                    color="#fca311"
-                    ariaLabel="three-dots-loading"
+                    color="var(--color1)"
+                    radius="5"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
                     visible={true}
                   />
                 </div>
-              ) : (
-                <input type="submit" value="Save" />
               )}
-            </form>{" "}
-          </div>
+            </Button>
+          </form>{" "}
         </div>
       </Dialog>
     </>

@@ -13,8 +13,10 @@ const ContributePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All Categories");
   const [pageCount, setPageCount] = useState(1);
+  const [hasMoreItems, setHasMoreItems] = useState(false);
 
   const fetchNeeds = async () => {
+    setActiveCategory("All Categories");
     setPageCount(1);
     try {
       setIsLoading(true);
@@ -25,6 +27,7 @@ const ContributePage = () => {
       const data = response.data.needsList.map((item, index) => {
         return <NeedCard key={index} needData={item} />;
       });
+      setHasMoreItems(true);
 
       setOriginalNeeds(data);
       setFilteredNeeds(data);
@@ -35,9 +38,11 @@ const ContributePage = () => {
   };
 
   const loadMore = async (event) => {
-    setPageCount(pageCount + 1);
+    const loadMoreLink = event.currentTarget;
+    loadMoreLink.style.display = "none";
 
     try {
+      setPageCount(pageCount + 1);
       const response = await axios.get(
         `${BACKEND_URL}/donor/getNeeds?page=` + (pageCount + 1),
         {
@@ -54,18 +59,26 @@ const ContributePage = () => {
       setOriginalNeeds((prevNeeds) => [...prevNeeds, ...newData]);
       setFilteredNeeds((prevNeeds) => [...prevNeeds, ...newData]);
 
-      console.log(event.target);
-
-      if (response.data.hasMoreItems === false) {
-        event.target.style.display = "none";
+      if (!response.data.hasMoreItems) {
+        setHasMoreItems(false);
       }
     } catch (e) {
+      console.log(e);
     } finally {
+      if (activeCategory != "All Categories") {
+        onCategorySelect(activeCategory);
+      }
+
+      loadMoreLink.style.display = "inline";
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
     }
   };
 
-  const onCategorySelect = (e) => {
-    const category = e.target.innerText;
+  const onCategorySelect = (category) => {
     setActiveCategory(category);
 
     if (category === "All Categories") {
@@ -98,7 +111,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "All Categories" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("All Categories")}
             >
               {" "}
               All Categories
@@ -107,7 +120,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Education" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Education")}
             >
               Education{" "}
             </div>
@@ -115,7 +128,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Medical" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Medical")}
             >
               Medical{" "}
             </div>
@@ -123,7 +136,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Women & Girls" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Women & Girls")}
             >
               Women & Girls{" "}
             </div>
@@ -131,7 +144,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Animals" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Animals")}
             >
               Animals{" "}
             </div>
@@ -139,7 +152,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Creative" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Creative")}
             >
               {" "}
               Creative
@@ -148,7 +161,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Food & Hunger" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Food & Hunger")}
             >
               {" "}
               Food & Hunger
@@ -157,7 +170,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Environment" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Environment")}
             >
               Environment{" "}
             </div>
@@ -165,7 +178,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Children" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Children")}
             >
               {" "}
               Children{" "}
@@ -174,7 +187,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Memorial" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Memorial")}
             >
               {" "}
               Memorial{" "}
@@ -185,7 +198,7 @@ const ContributePage = () => {
                   ? styles.activeCategory
                   : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Community Development")}
             >
               {" "}
               Community Development{" "}
@@ -194,7 +207,7 @@ const ContributePage = () => {
               className={`${styles.categoryItem} ${
                 activeCategory === "Others" ? styles.activeCategory : ""
               }`}
-              onClick={onCategorySelect}
+              onClick={() => onCategorySelect("Others")}
             >
               {" "}
               Others
@@ -208,17 +221,16 @@ const ContributePage = () => {
                 <ThreeDots color="#fca311" />
               </div>
             ) : (
-              <div>
-                <div className={styles.needsCardContainer}>{filteredNeeds}</div>
-                {filteredNeeds.length !== 0 ? (
-                  <div className={styles.loadMoreLink} onClick={loadMore}>
-                    Load More
-                    <EastIcon className={styles.icon} />
-                  </div>
-                ) : (
-                  <div>No results found</div>
-                )}
-                {filteredNeeds.length === 0 ? <div>No results found</div> : ""}
+              <div className={styles.needsCardContainer}>{filteredNeeds}</div>
+            )}
+            {!filteredNeeds.length && !isLoading && <div>No results found</div>}
+            {hasMoreItems && filteredNeeds.length > 0 && !isLoading && (
+              <div
+                className={styles.loadMoreLink}
+                onClick={(event) => loadMore(event)}
+              >
+                Load More
+                <EastIcon className={styles.icon} />
               </div>
             )}
           </div>

@@ -11,7 +11,8 @@ import Contribute from "../../../pages/DonorPages/ContributePage";
 import logo from "../../../assets/logo.png";
 
 const NavigationManager = () => {
-  const [activeTab, setActiveTab] = useState("Home");
+  const savedActiveTab = localStorage.getItem("activeTab") || "Home";
+  const [activeTab, setActiveTab] = useState(savedActiveTab);
   const [loginOpen, setLoginOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -35,6 +36,8 @@ const NavigationManager = () => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    localStorage.setItem("activeTab", activeTab);
+
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       setVisible(prevScrollPos > currentScrollPos);
@@ -52,7 +55,7 @@ const NavigationManager = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos]);
+  }, [prevScrollPos, activeTab]);
 
   return (
     <>

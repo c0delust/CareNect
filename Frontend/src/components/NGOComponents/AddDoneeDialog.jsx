@@ -246,7 +246,7 @@ const AddDoneeDialog = ({ open, onClose }) => {
           <div>
             <div
               style={{
-                marginBottom: "10px",
+                marginBottom: "15px",
                 fontWeight: "600",
                 color: "var(--color1)",
               }}
@@ -368,7 +368,7 @@ const AddDoneeDialog = ({ open, onClose }) => {
             }}
           >
             {!isLoading ? (
-              "Submit"
+              "Add"
             ) : (
               <div
                 style={{
